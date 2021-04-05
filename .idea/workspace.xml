@@ -12,6 +12,9 @@
       <executable />
     </execution>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1qkty0yecgo138qPyzTb6MlYvCj" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -42,6 +45,7 @@
       <option name="presentableId" value="Default" />
       <updated>1617635666314</updated>
       <workItem from="1617635670612" duration="9928000" />
+      <workItem from="1617646865864" duration="323000" />
     </task>
     <servers />
   </component>
@@ -49,13 +53,17 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="233" y="20" key="#Deployment" timestamp="1617643281333">
+    <state x="233" y="20" key="#Deployment" timestamp="1617647190574">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="233" y="20" key="#Deployment/0.0.1280.720@0.0.1280.720" timestamp="1617643281333" />
+    <state x="233" y="20" key="#Deployment/0.0.1280.720@0.0.1280.720" timestamp="1617647190574" />
     <state x="477" y="285" key="NewPhpFileDialog" timestamp="1617645444056">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="477" y="285" key="NewPhpFileDialog/0.0.1280.720@0.0.1280.720" timestamp="1617645444056" />
+    <state x="337" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1617647142500">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="337" y="186" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1617647142500" />
   </component>
 </project>
