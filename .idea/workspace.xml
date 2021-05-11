@@ -1,38 +1,259 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f6bb5652-20fb-4d83-8fa4-ef89927f6bdf" name="Default Changelist" comment="" />
+    <list default="true" id="f6bb5652-20fb-4d83-8fa4-ef89927f6bdf" name="Default Changelist" comment="ss">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/CHANGELOG.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ISSUE_TEMPLATE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/LICENSE.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/COMMITMENT" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/SECURITY.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/VERSION" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/get_oauth_token.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-af.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ar.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-az.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ba.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-be.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-bg.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ca.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ch.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-cs.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-da.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-de.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-el.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-eo.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-es.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-et.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-fa.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-fi.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-fo.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-fr.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-gl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-he.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-hi.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-hr.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-hu.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-hy.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-id.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-it.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ja.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ka.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ko.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-lt.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-lv.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-mg.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ms.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-nb.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-nl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-pl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-pt.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-pt_br.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ro.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-ru.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-sk.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-sl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-sr.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-sr_latn.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-sv.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-tl.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-tr.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-uk.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-vi.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-zh.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/language/phpmailer.lang-zh_cn.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/phpunit.xml.dist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/src/Exception.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/src/OAuth.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/src/PHPMailer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/src/POP3.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PHPMailer-master/src/SMTP.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/bootstrap.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/bootstrap.min.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/now-ui-dashboard.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/now-ui-dashboard.css.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/now-ui-dashboard.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/demo/demo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/demo/demo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/Pacifico/generator_config.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/Pacifico/pacifico-regular-demo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/Pacifico/pacifico-regular-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/Pacifico/pacifico-regular-webfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/Pacifico/specimen_files/grid_12-825-55-15.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/Pacifico/specimen_files/specimen_stylesheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/Pacifico/stylesheet.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/nucleo-license.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/nucleo-outline.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/nucleo-outline.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/nucleo-outline.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/nucleo-outline.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/img/apple-icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/img/bg5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/img/default-avatar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/img/favicon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/img/header.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/img/mike.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/img/now-logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/img/now-ui-dashboard.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/core/bootstrap.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/core/jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/core/popper.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/now-ui-dashboard.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/now-ui-dashboard.js.map" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/now-ui-dashboard.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/plugins/bootstrap-notify.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/plugins/chartjs.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/plugins/perfect-scrollbar.jquery.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_alerts.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_buttons.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_cards.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_checkboxes-radio.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_dropdown.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_fixed-plugin.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_footers.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_images.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_inputs.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_misc.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_mixins.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_navbar.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_nucleo-outline.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_page-header.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_responsive.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_sidebar-and-main-panel.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_tables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_typography.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/_variables.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/cards/_card-chart.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/cards/_card-map.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/cards/_card-plain.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/cards/_card-user.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/mixins/_buttons.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/mixins/_cards.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/mixins/_dropdown.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/mixins/_inputs.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/mixins/_page-header.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/mixins/_sidebar.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/mixins/_transparency.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/mixins/_vendor-prefixes.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/plugins/_plugin-animate-bootstrap-notify.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/scss/now-ui-dashboard/plugins/_plugin-perfect-scrollbar.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docs/documentation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker-1296364641.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker-1511480944.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker-1711136663.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker-1901288057.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker-1939437279.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker-294333409.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker-3854073.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker-444375487.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker-459089627.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker104497199.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker1076185051.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker1083923368.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker1318351490.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker1430431994.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker203158537.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker2092207477.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker2108527813.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker466604435.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gulpfile.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/nucleo-icons.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/accept.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/admin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/dashboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/dashboard.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/db.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/delete.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/drivers.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/icons.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/map.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/notifications.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/tables.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/typography.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/upgrade.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pages/user.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/login-form-20.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Otobus.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/auth.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/auth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logout.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/logout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/reg.php" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/PHPMailer-master/composer.json</pharConfigPath>
     <execution>
-      <executable />
+      <executable path="C:\Users\samah\Downloads\Composer-Setup.exe" />
     </execution>
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Otobus" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1qkty0yecgo138qPyzTb6MlYvCj" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\xampp\htdocs\login-form-20\images" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\OtobusAdmin\pages" />
+      <recent name="C:\xampp\htdocs\OtobusAdmin\assets\fonts" />
       <recent name="C:\xampp\htdocs\login-form-20\images" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\OtobusAdmin\pages" />
+      <recent name="C:\xampp\htdocs\OtobusAdmin\assets\fonts" />
+      <recent name="C:\xampp\htdocs\OtobusAdmin" />
+      <recent name="C:\xampp\htdocs\login-form-20\images" />
+    </key>
+  </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="composer require phpmailer/phpmailer" />
+      <command value="php composer-setup.php --install-dir=bin" />
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -45,25 +266,81 @@
       <option name="presentableId" value="Default" />
       <updated>1617635666314</updated>
       <workItem from="1617635670612" duration="9928000" />
-      <workItem from="1617646865864" duration="323000" />
+      <workItem from="1617646865864" duration="1599000" />
+      <workItem from="1617649088531" duration="95849000" />
+      <workItem from="1618562660656" duration="37063000" />
+      <workItem from="1618664878768" duration="359000" />
+      <workItem from="1618681629592" duration="1669000" />
+      <workItem from="1619608705434" duration="12000" />
+      <workItem from="1620122390882" duration="377000" />
+      <workItem from="1620757297546" duration="217000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="ss" />
+    <option name="LAST_COMMIT_MESSAGE" value="ss" />
+  </component>
   <component name="WindowStateProjectService">
+    <state x="0" y="39" key="#CLI_Interpreters" timestamp="1617897540005">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="0" y="39" key="#CLI_Interpreters/0.0.1280.720@0.0.1280.720" timestamp="1617897540005" />
     <state x="233" y="20" key="#Deployment" timestamp="1617647190574">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="233" y="20" key="#Deployment/0.0.1280.720@0.0.1280.720" timestamp="1617647190574" />
-    <state x="477" y="285" key="NewPhpFileDialog" timestamp="1617645444056">
+    <state x="233" y="20" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1617825162109">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="477" y="285" key="NewPhpFileDialog/0.0.1280.720@0.0.1280.720" timestamp="1617645444056" />
-    <state x="337" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1617647142500">
+    <state x="233" y="20" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1280.720@0.0.1280.720" timestamp="1617825162109" />
+    <state x="379" y="165" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1617851453345">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="337" y="186" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1617647142500" />
+    <state x="379" y="165" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1280.720@0.0.1280.720" timestamp="1617851453345" />
+    <state x="371" y="109" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1617813402210">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="371" y="109" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.720@0.0.1280.720" timestamp="1617813402210" />
+    <state x="265" y="0" key="CommitChangelistDialog2" timestamp="1620757473916">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="265" y="0" key="CommitChangelistDialog2/0.0.1280.720@0.0.1280.720" timestamp="1620757473916" />
+    <state x="426" y="255" width="429" height="293" key="ComposerInitDialogKey" timestamp="1617897573876">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="426" y="255" width="429" height="293" key="ComposerInitDialogKey/0.0.1280.720@0.0.1280.720" timestamp="1617897573876" />
+    <state x="422" y="148" key="FileChooserDialogImpl" timestamp="1617897571954">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="422" y="148" key="FileChooserDialogImpl/0.0.1280.720@0.0.1280.720" timestamp="1617897571954" />
+    <state x="477" y="285" key="NewPhpFileDialog" timestamp="1617819690067">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="477" y="285" key="NewPhpFileDialog/0.0.1280.720@0.0.1280.720" timestamp="1617819690067" />
+    <state x="142" y="4" key="SettingsEditor" timestamp="1617911059898">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="142" y="4" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1617911059898" />
+    <state x="337" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1620757301052">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="337" y="186" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1620757301052" />
+    <state x="332" y="217" width="663" height="281" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1617910925163">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="332" y="217" width="663" height="281" key="org.intellij.images.editor.actions.BackgroundImageDialog/0.0.1280.720@0.0.1280.720" timestamp="1617910925163" />
+    <state x="297" y="161" width="672" height="677" key="run.anything.popup" timestamp="1617892326948">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="297" y="161" width="672" height="677" key="run.anything.popup/0.0.1280.720@0.0.1280.720" timestamp="1617892326948" />
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup" timestamp="1617817884370">
+      <screen x="0" y="0" width="1280" height="720" />
+    </state>
+    <state x="303" y="41" width="672" height="678" key="search.everywhere.popup/0.0.1280.720@0.0.1280.720" timestamp="1617817884370" />
   </component>
 </project>
