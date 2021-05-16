@@ -237,6 +237,113 @@ include("./auth.php");
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Requests to Update Insurance</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <?php
+                                $sql = "SELECT * from `driver` WHERE onofflag=0b1";
+                                $result = $con->query($sql);
+                                if($result->num_rows>0) {
+                                $row = mysqli_fetch_assoc($result);
+                                $busid=$row['busid'];
+                                $query="SELECT * from `bus` WHERE busid ='$busid'";
+                                $res = $con->query($query);
+                                $ro = mysqli_fetch_assoc($res);
+                                $insname=$ro['insurname'];
+                                $inscard=$ro['insurencoded'];
+                                $insenddate=$ro['insurend'];
+                                $insImage=base64_decode($inscard);
+                                file_put_contents('../driverimgs/'. $insname, $insImage);
+                                ?>
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <th class="text-center">
+                                        Name
+                                    </th>
+                                    <th class="text-center">
+                                        Email
+                                    </th>
+                                    <th class="text-center">
+                                        Phone #
+                                    </th>
+                                    <th class="text-center">
+                                        New Insurance Info
+                                    </th>
+                                    <th class="text-center">
+                                        State
+                                    </th>
+                                    </thead>
+                                    <tbody>
+                                    <tr id="<?php echo $row['driverid']; ?>">
+                                        <td class="text-center"><?php $_SESSION['drivername']=$row['name']; echo $row['name']; ?></td>
+                                        <td class="text-center"><?php $_SESSION['driveremail']=$row['email']; echo $row['email']; ?></td>
+                                        <td class="text-center"><?php echo $row['phonenum']; ?></td>
+                                        <td class="text-center"><button button type="button" class="btn btn-primary" data-toggle="modal" data-target="#businfo">See it</button></td>
+                                        <div class="modal fade" id="businfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLongTitle"><b>Insurance Information</b></h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <h5 class="text-center">Bus Plate Card :&nbsp;&nbsp;<b><?php echo $busid; ?></b></h5>
+                                                        <h5 class="text-center">Insurance card :</h5>
+                                                        <img src=<?php echo '../driverimgs/'.$insname?> alt="insurancecard" />
+                                                        <h5 class="text-center">Insurance End Date :&nbsp;&nbsp;<b><?php echo $insenddate; ?></b></h5>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <td class="text-center">
+                                            <form action="insacc.php">
+                                                <button name="accept" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span></button>
+                                            </form>
+                                            <form action="insdelet.php">
+                                                <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                    }else{
+                                        echo"
+                                                   <br/>
+                        <br/>
+                        <h5 style=\"color: limegreen ;text-align: center\">
+                             There is no requests for now
+                        </h5>
+                        </br>";}
+                                    ?>
+
+                                    <script>
+                                        function myFunc() {
+                                            // onclick="myFunc();"
+                                            //var $emmail=document.getElementById("70").innerHTML;
+                                            //return $emmail;
+                                            //document.getElementById("demo").innerHTML =$emmail;
+                                        }
+                                    </script>
+                                    <h5 id="demo"></h5>
+
+                                    </tbody>
+                                </table>
+                                <div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
