@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f6bb5652-20fb-4d83-8fa4-ef89927f6bdf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker-1491969909.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker-1735723983.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker-2007086963.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker-770672330.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker-986836246.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker1173759543.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker1794013583.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/insacc.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/insdelet.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/drivers.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/drivers.php" afterDir="false" />
-    </list>
+    <list default="true" id="f6bb5652-20fb-4d83-8fa4-ef89927f6bdf" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,6 +90,7 @@
       <workItem from="1620757297546" duration="1040000" />
       <workItem from="1620763034461" duration="2798000" />
       <workItem from="1620937713813" duration="7064000" />
+      <workItem from="1621157778473" duration="710000" />
     </task>
     <task id="LOCAL؜٠٠٠٠١" summary="ss">
       <created>1620757619931</created>
@@ -115,7 +104,13 @@
       <option name="presentableId" value="LOCAL؜٠٠٠٠٢" />
       <updated>1620767313442</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL؜٠٠٠٠٣" summary="ss">
+      <created>1621157908941</created>
+      <option name="number" value="LOCAL؜٠٠٠٠٣" />
+      <option name="presentableId" value="LOCAL؜٠٠٠٠٣" />
+      <updated>1621157908961</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,10 +166,10 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="142" y="4" key="SettingsEditor/0.0.1280.720@0.0.1280.720" timestamp="1617911059898" />
-    <state x="337" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1621157818283">
+    <state x="337" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1621253280303">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="337" y="186" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1621157818283" />
+    <state x="337" y="186" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1621253280303" />
     <state x="332" y="217" width="663" height="281" key="org.intellij.images.editor.actions.BackgroundImageDialog" timestamp="1617910925163">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
