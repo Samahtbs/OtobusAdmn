@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="1534dc89-0e42-4667-bada-9084a2c43034" name="otobus" url="http://localhost:8089/OtobusAdmin">
+      <webServer id="1534dc89-0e42-4667-bada-9084a2c43034" name="otobus" url="http://localhost:8089/OtobusAdmn">
         <fileTransfer port="0" accessType="LOCAL" />
       </webServer>
     </option>

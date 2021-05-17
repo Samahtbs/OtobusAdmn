@@ -135,6 +135,8 @@ include("./auth.php");
                                 file_put_contents('../driverimgs/'.$idcardname, $idcardImage);
                                 file_put_contents('../driverimgs/'. $insname, $insImage);
                                 ?>
+
+
                                 <table class="table">
                                     <thead class=" text-primary">
                                     <th class="text-center">
