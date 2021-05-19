@@ -1,23 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f6bb5652-20fb-4d83-8fa4-ef89927f6bdf" name="Default Changelist" comment="edsdf">
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker-1047845557.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker-566789269.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker-691684095.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker1519882581.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker1953899900.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker443218935.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/feedback.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/requests.php" afterDir="false" />
+    <list default="true" id="f6bb5652-20fb-4d83-8fa4-ef89927f6bdf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/accept.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/accept.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/delete.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/drivers.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/drivers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/insacc.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/insacc.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/insdelet.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/insdelet.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +98,7 @@
       <workItem from="1621254017489" duration="304000" />
       <workItem from="1621254361983" duration="607000" />
       <workItem from="1621255028393" duration="7000" />
-      <workItem from="1621329876645" duration="47167000" />
+      <workItem from="1621329876645" duration="53957000" />
     </task>
     <task id="LOCAL؜٠٠٠٠١" summary="ss">
       <created>1620757619931</created>
@@ -156,7 +142,13 @@
       <option name="presentableId" value="LOCAL؜٠٠٠٠٧" />
       <updated>1621254418773</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL؜٠٠٠٠٨" summary="edsdf">
+      <created>1621446753501</created>
+      <option name="number" value="LOCAL؜٠٠٠٠٨" />
+      <option name="presentableId" value="LOCAL؜٠٠٠٠٨" />
+      <updated>1621446753502</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,10 +219,10 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="371" y="109" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1280.720@0.0.1280.720" timestamp="1621415414729" />
-    <state x="265" y="0" key="CommitChangelistDialog2" timestamp="1621254860403">
+    <state x="265" y="0" key="CommitChangelistDialog2" timestamp="1621446713485">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="265" y="0" key="CommitChangelistDialog2/0.0.1280.720@0.0.1280.720" timestamp="1621254860403" />
+    <state x="265" y="0" key="CommitChangelistDialog2/0.0.1280.720@0.0.1280.720" timestamp="1621446713485" />
     <state x="426" y="255" width="429" height="293" key="ComposerInitDialogKey" timestamp="1617897573876">
       <screen x="0" y="0" width="1280" height="720" />
     </state>

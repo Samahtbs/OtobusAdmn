@@ -1,11 +1,10 @@
 <?php
 require_once'db.php';
 include("./auth.php");
-// Code for record deletion
+
 if(isset($_REQUEST['dest'])) {
     $placeid = intval($_GET['dest']);
     $_SESSION['destid']=$placeid;
-    //$sql = "SELECT * from `feedback` WHERE id='$feedbackid'";
 }
 if(isset($_REQUEST['src'])) {
     $placeid = intval($_GET['src']);
@@ -180,14 +179,42 @@ if(isset($_REQUEST['src'])) {
                 </div>
             </div>
         <div class="row">
-            <div class="col-md-12">
+            <div class="card-body all-icons">
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="card-title"><b>Line Drivers</b></h4>
+                        <?php
+                    $sql1 = "SELECT * from `places` WHERE id='$src'";
+                    $res1 = $con->query($sql1);
+                    $row1 = mysqli_fetch_assoc($res1);
+                    $source = $row1['PlaceName'];
+                    $sql2 = "SELECT * from `places` WHERE id='$dest'";
+                    $res2 = $con->query($sql2);
+                    $row2 = mysqli_fetch_assoc($res2);
+                    $destination = $row2['PlaceName'];
+                    ?>
+                        <h4 class="card-title"><b>(&nbsp;&nbsp;<?php echo $source;?>&nbsp;&nbsp;<->&nbsp;&nbsp;<?php echo $destination ?>&nbsp;&nbsp;) Drivers</b></h4>
                     </div>
                     <div class="card-body">
-
-                    </div>
+                    <?php
+                    $cnt=1;
+                    $sql = "SELECT * from `driver` WHERE (begname='$source' AND endname='$destination') OR (begname='$destination' AND endname='$source')";
+                    $result = $con->query($sql);
+                    for($i=0;$i<$result->num_rows;$i++) {
+                        $row = mysqli_fetch_assoc($result);
+                        $drivername= $row['name'];
+                    ?>
+                        <div class="font-icon-list col-lg-3 col-md-6 col-sm-6 col-xs-6 col-xs-6">
+                            <div class="font-icon-detail">
+                                <i class="fas fa-star-half"></i>
+                                <p style="font-size: 20px;color: black"><?php
+                                    echo $drivername;
+                                    ?></p>
+                            </div>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                </div>
                 </div>
             </div>
         </div>
