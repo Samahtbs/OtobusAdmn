@@ -52,14 +52,24 @@ $headers = "From: otobus@gmail.com";
                         <p>Dashboard</p>
                     </a>
                 </li>
-
-                <li class="active ">
+                <li>
                     <a href="drivers.php">
                         <i class="fas fa-bus"></i>
-                        <p>Otobüs Drivers</p>
+                        <p>Otobus Drivers</p>
                     </a>
                 </li>
-
+                <li class="active ">
+                    <a href="requests.php">
+                        <i class="fas fa-clipboard-list"></i>
+                        <p>Drivers Requests</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="feedback.php">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p> Reported Drivers</p>
+                    </a>
+                </li>
                 <li >
                     <a href="admin.php">
                         <i class="now-ui-icons users_single-02"></i>
@@ -128,7 +138,7 @@ $headers = "From: otobus@gmail.com";
                         </h5>
                         </br>
                         <h6 style="text-align: center;text-underline: black">
-                            <a href='drivers.php'>See More Drivers</a>
+                            <a href='requests.php'>See More Drivers</a>
                         </h6>
                         </br>
                         </br>

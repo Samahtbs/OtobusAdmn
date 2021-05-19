@@ -1,6 +1,16 @@
 <?php
-require("db.php");
+require_once'db.php';
 include("./auth.php");
+// Code for record deletion
+if(isset($_REQUEST['dest'])) {
+    $placeid = intval($_GET['dest']);
+    $_SESSION['destid']=$placeid;
+    //$sql = "SELECT * from `feedback` WHERE id='$feedbackid'";
+}
+if(isset($_REQUEST['src'])) {
+    $placeid = intval($_GET['src']);
+    $_SESSION['srcid']=$placeid;
+}
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +26,7 @@ include("./auth.php");
     <link rel="icon" href="../images/icon2.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Otobüs Drivers
+        Otobüs| Drivers
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
@@ -51,7 +61,18 @@ include("./auth.php");
                         <p>Otobüs Drivers</p>
                     </a>
                 </li>
-
+                <li>
+                    <a href="requests.php">
+                        <i class="fas fa-clipboard-list"></i>
+                        <p>Drivers Requests</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="feedback.php">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p> Reported Drivers</p>
+                    </a>
+                </li>
                 <li >
                     <a href="admin.php">
                         <i class="now-ui-icons users_single-02"></i>
@@ -103,252 +124,175 @@ include("./auth.php");
     <div class="panel-header panel-header-sm" style="background-color:#FFB236">
     </div>
     <div class="content">
-        <div class="content">
             <div class="row">
-                <div class="col-md-12">
+                <div class="”col-3">
                     <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Requests of New Drivers</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <?php
-                                $sql = "SELECT * from `driver` WHERE active=0b0";
-                                $result = $con->query($sql);
-                                if($result->num_rows>0) {
-                                $row = mysqli_fetch_assoc($result);
-                                $licenseImage= base64_decode($row['licencoded']);
-                                file_put_contents('../driverimgs/'.$row['license'], $licenseImage);
-                                $busid=$row['busid'];
-                                $query="SELECT * from `bus` WHERE busid ='$busid'";
-                                $res = $con->query($query);
-                                $ro = mysqli_fetch_assoc($res);
-                                $type=$ro['type'];
-                                $passnum=$ro['numofpass'];
-                                $idcardname=$ro['idcard'];
-                                $encidcard=$ro['cardencoded'];
-                                $insname=$ro['insurname'];
-                                $inscard=$ro['insurencoded'];
-                                $insenddate=$ro['insurend'];
-                                $idcardImage= base64_decode($encidcard);
-                                $insImage=base64_decode($inscard);
-                                file_put_contents('../driverimgs/'.$idcardname, $idcardImage);
-                                file_put_contents('../driverimgs/'. $insname, $insImage);
-                                ?>
-
-
-                                <table class="table">
-                                    <thead class=" text-primary">
-                                    <th class="text-center">
-                                        Name
-                                    </th>
-                                    <th class="text-center">
-                                        Email
-                                    </th>
-                                    <th class="text-center">
-                                        Phone #
-                                    </th>
-                                    <th class="text-center">
-                                        Driving license
-                                    </th>
-                                    <th class="text-center">
-                                        Bus Info
-                                    </th>
-                                    <th class="text-center">
-                                        State
-                                    </th>
-                                    </thead>
-                                    <tbody>
-                                            <tr id="<?php echo $row['driverid']; ?>">
-                                                <td class="text-center"><?php $_SESSION['drivername']=$row['name']; echo $row['name']; ?></td>
-                                                <td class="text-center"><?php $_SESSION['driveremail']=$row['email']; echo $row['email']; ?></td>
-                                                <td class="text-center"><?php echo $row['phonenum']; ?></td>
-                                                <td class="text-center"><button type="button" class="btn btn-primary"  data-toggle="modal" data-target=".bd-example-modal-lg">DL picture</button></td>
-                                                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-lg">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLongTitle"><b>Driving License Picture</b></h5>
-                                                            </div>
-                                                            <img src=<?php echo '../driverimgs/'.$row['license']?> alt="license" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <td class="text-center"><button button type="button" class="btn btn-primary" data-toggle="modal" data-target="#businfo">See it</button></td>
-                                                <div class="modal fade" id="businfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLongTitle"><b>Bus Information</b></h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <h5 class="text-center">Bus Plate Card :&nbsp;&nbsp;<b><?php echo $busid; ?></b></h5>
-                                                                <h5 class="text-center">Bus Type :&nbsp;&nbsp;<b><?php echo $type; ?></b></h5>
-                                                                <h5 class="text-center">Number of Passengers :&nbsp;&nbsp;<b><?php echo $passnum; ?></b></h5>
-                                                                <h5 class="text-center">Bud ID Card :</h5>
-                                                                <img src=<?php echo '../driverimgs/'.$idcardname?> alt="idcard" />
-                                                                <h5 class="text-center">Insurance card :</h5>
-                                                                <img src=<?php echo '../driverimgs/'.$insname?> alt="insurancecard" />
-                                                                <h5 class="text-center">Insurance End Date :&nbsp;&nbsp;<b><?php echo $insenddate; ?></b></h5>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <td class="text-center">
-                                                    <form action="accept.php">
-                                                        <button name="accept" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span></button>
-                                                    </form>
-                                                    <form action="delete.php">
-                                                        <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
-                                                    </form>
-                                                </td>
-                                            </tr>
-                                            <?php
-                                             }else{
-                                                  echo"
-                                                   <br/>
-                        <br/>
-                        <h5 style=\"color: limegreen ;text-align: center\">
-                             There is no requests for now
-                        </h5>
-                        </br>";}
-                                            ?>
-
-                                            <script>
-                                                function myFunc() {
-                                                    // onclick="myFunc();"
-                                                    //var $emmail=document.getElementById("70").innerHTML;
-                                                    //return $emmail;
-                                                    //document.getElementById("demo").innerHTML =$emmail;
-                                                }
-                                            </script>
-                                            <h5 id="demo"></h5>
-
-                                    </tbody>
-                                </table>
-                                <div>
+                        <?php
+                        $src=$_SESSION['srcid'];
+                        $dest=$_SESSION['destid'];
+                        //echo $src;
+                        //echo $dest;
+                        ?>
+                        <div class="container-fluid">
+                        <div class="row" >
+                            <span>&nbsp;&nbsp;&nbsp;</span>
+                            <div class="dropdown" >
+                                <button style="background-color: #0c2646; font-size: 15px;"  class="btn btn-secondary dropdown-toggle" type="button" id="from" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;Source&nbsp;&nbsp;&nbsp;&nbsp;
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <?php
+                                    $sql = "SELECT * from `places` WHERE 1";
+                                    $result = $con->query($sql);
+                                    for($i=0;$i<$result->num_rows;$i++) {
+                                        $row = mysqli_fetch_assoc($result);
+                                        ?>
+                                        <a class="dropdown-item" href="drivers.php?src=<?php echo $row['id']; ?>" style="font-size: 15px"><?php echo $row['PlaceName'];?></a>
+                                        <div class="dropdown-divider"></div>
+                                        <?php
+                                    }
+                                    ?>
                                 </div>
                             </div>
+                            <span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
+                            <div class="dropdown">
+                                <button style="background-color: #0c2646; font-size: 15px;" class="btn btn-secondary dropdown-toggle" type="button" id="to" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Destination
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <?php
+                                    $sql = "SELECT * from `places` WHERE 1";
+                                    $result = $con->query($sql);
+                                    for($i=0;$i<$result->num_rows;$i++) {
+                                      $row = mysqli_fetch_assoc($result);
+                                    ?>
+                                    <a class="dropdown-item" href="drivers.php?dest=<?php echo $row['id']; ?>" style="font-size: 15px"><?php echo $row['PlaceName'];?></a>
+                                    <div class="dropdown-divider"></div>
+                                    <?php
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                            <span>&nbsp;&nbsp;&nbsp;</span>
+                            </div>
                         </div>
-                    </div>
+                        </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Requests to Update Insurance</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <?php
-                                $sql = "SELECT * from `driver` WHERE onofflag=0b1";
-                                $result = $con->query($sql);
-                                if($result->num_rows>0) {
-                                $row = mysqli_fetch_assoc($result);
-                                $busid=$row['busid'];
-                                $query="SELECT * from `bus` WHERE busid ='$busid'";
-                                $res = $con->query($query);
-                                $ro = mysqli_fetch_assoc($res);
-                                $insname=$ro['insurname'];
-                                $inscard=$ro['insurencoded'];
-                                $insenddate=$ro['insurend'];
-                                $insImage=base64_decode($inscard);
-                                file_put_contents('../driverimgs/'. $insname, $insImage);
-                                ?>
-                                <table class="table">
-                                    <thead class=" text-primary">
-                                    <th class="text-center">
-                                        Name
-                                    </th>
-                                    <th class="text-center">
-                                        Email
-                                    </th>
-                                    <th class="text-center">
-                                        Phone #
-                                    </th>
-                                    <th class="text-center">
-                                        New Insurance Info
-                                    </th>
-                                    <th class="text-center">
-                                        State
-                                    </th>
-                                    </thead>
-                                    <tbody>
-                                    <tr id="<?php echo $row['driverid']; ?>">
-                                        <td class="text-center"><?php $_SESSION['drivername']=$row['name']; echo $row['name']; ?></td>
-                                        <td class="text-center"><?php $_SESSION['driveremail']=$row['email']; echo $row['email']; ?></td>
-                                        <td class="text-center"><?php echo $row['phonenum']; ?></td>
-                                        <td class="text-center"><button button type="button" class="btn btn-primary" data-toggle="modal" data-target="#businfo">See it</button></td>
-                                        <div class="modal fade" id="businfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLongTitle"><b>Insurance Information</b></h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <h5 class="text-center">Bus Plate Card :&nbsp;&nbsp;<b><?php echo $busid; ?></b></h5>
-                                                        <h5 class="text-center">Insurance card :</h5>
-                                                        <img src=<?php echo '../driverimgs/'.$insname?> alt="insurancecard" />
-                                                        <h5 class="text-center">Insurance End Date :&nbsp;&nbsp;<b><?php echo $insenddate; ?></b></h5>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <td class="text-center">
-                                            <form action="insacc.php">
-                                                <button name="accept" type="submit" class="btn btn-success btn-xs"><span class="glyphicon glyphicon-ok"></span></button>
-                                            </form>
-                                            <form action="insdelet.php">
-                                                <button class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></span></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <?php
-                                    }else{
-                                        echo"
-                                                   <br/>
-                        <br/>
-                        <h5 style=\"color: limegreen ;text-align: center\">
-                             There is no requests for now
-                        </h5>
-                        </br>";}
-                                    ?>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"><b>Line Drivers</b></h4>
+                    </div>
+                    <div class="card-body">
 
-                                    <script>
-                                        function myFunc() {
-                                            // onclick="myFunc();"
-                                            //var $emmail=document.getElementById("70").innerHTML;
-                                            //return $emmail;
-                                            //document.getElementById("demo").innerHTML =$emmail;
-                                        }
-                                    </script>
-                                    <h5 id="demo"></h5>
-
-                                    </tbody>
-                                </table>
-                                <div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    function autocomplete(inp, arr) {
+        /*the autocomplete function takes two arguments,
+        the text field element and an array of possible autocompleted values:*/
+        var currentFocus;
+        /*execute a function when someone writes in the text field:*/
+        inp.addEventListener("input", function(e) {
+            var a, b, i, val = this.value;
+            /*close any already open lists of autocompleted values*/
+            closeAllLists();
+            if (!val) { return false;}
+            currentFocus = -1;
+            /*create a DIV element that will contain the items (values):*/
+            a = document.createElement("DIV");
+            a.setAttribute("id", this.id + "autocomplete-list");
+            a.setAttribute("class", "autocomplete-items");
+            /*append the DIV element as a child of the autocomplete container:*/
+            this.parentNode.appendChild(a);
+            /*for each item in the array...*/
+            for (i = 0; i < arr.length; i++) {
+                /*check if the item starts with the same letters as the text field value:*/
+                if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                    /*create a DIV element for each matching element:*/
+                    b = document.createElement("DIV");
+                    /*make the matching letters bold:*/
+                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                    b.innerHTML += arr[i].substr(val.length);
+                    /*insert a input field that will hold the current array item's value:*/
+                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                    /*execute a function when someone clicks on the item value (DIV element):*/
+                    b.addEventListener("click", function(e) {
+                        /*insert the value for the autocomplete text field:*/
+                        inp.value = this.getElementsByTagName("input")[0].value;
+                        /*close the list of autocompleted values,
+                        (or any other open lists of autocompleted values:*/
+                        closeAllLists();
+                    });
+                    a.appendChild(b);
+                }
+            }
+        });
+        /*execute a function presses a key on the keyboard:*/
+        inp.addEventListener("keydown", function(e) {
+            var x = document.getElementById(this.id + "autocomplete-list");
+            if (x) x = x.getElementsByTagName("div");
+            if (e.keyCode == 40) {
+                /*If the arrow DOWN key is pressed,
+                increase the currentFocus variable:*/
+                currentFocus++;
+                /*and and make the current item more visible:*/
+                addActive(x);
+            } else if (e.keyCode == 38) { //up
+                /*If the arrow UP key is pressed,
+                decrease the currentFocus variable:*/
+                currentFocus--;
+                /*and and make the current item more visible:*/
+                addActive(x);
+            } else if (e.keyCode == 13) {
+                /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                e.preventDefault();
+                if (currentFocus > -1) {
+                    /*and simulate a click on the "active" item:*/
+                    if (x) x[currentFocus].click();
+                }
+            }
+        });
+        function addActive(x) {
+            /*a function to classify an item as "active":*/
+            if (!x) return false;
+            /*start by removing the "active" class on all items:*/
+            removeActive(x);
+            if (currentFocus >= x.length) currentFocus = 0;
+            if (currentFocus < 0) currentFocus = (x.length - 1);
+            /*add class "autocomplete-active":*/
+            x[currentFocus].classList.add("autocomplete-active");
+        }
+        function removeActive(x) {
+            /*a function to remove the "active" class from all autocomplete items:*/
+            for (var i = 0; i < x.length; i++) {
+                x[i].classList.remove("autocomplete-active");
+            }
+        }
+        function closeAllLists(elmnt) {
+            /*close all autocomplete lists in the document,
+            except the one passed as an argument:*/
+            var x = document.getElementsByClassName("autocomplete-items");
+            for (var i = 0; i < x.length; i++) {
+                if (elmnt != x[i] && elmnt != inp) {
+                    x[i].parentNode.removeChild(x[i]);
+                }
+            }
+        }
+        /*execute a function when someone clicks in the document:*/
+        document.addEventListener("click", function (e) {
+            closeAllLists(e.target);
+        });
+    }
+    var arr = ["UK", "France", "Spain", "Russia", "Italy", "Turkey", "Austrlia", "USA", "Egypt", "Lebanon", "Germany", "Portughal", "Emirate", "Switzerland", "Brazil", "Canada", "Jaban", "Malaysia", "Trabzon"];
+    autocomplete(document.getElementById("inp"), arr);
+</script>
 
 <!--   Core JS Files   -->
 <script src="../assets/js/core/jquery.min.js"></script>

@@ -16,7 +16,7 @@ require('db.php');
     <link rel="icon" href="../images/icon2.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    ADMIN Dashboard
+      Otobüs| Dashboard
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
   <!--     Fonts and icons     -->
@@ -52,6 +52,18 @@ require('db.php');
                     <p>Otobus Drivers</p>
                 </a>
           </li>
+          <li>
+                <a href="requests.php">
+                    <i class="fas fa-clipboard-list"></i>
+                    <p>Drivers Requests</p>
+                </a>
+          </li>
+          <li>
+                <a href="feedback.php">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p> Reported Drivers</p>
+                </a>
+          </li>
 
           <li>
                 <a href="admin.php">
@@ -59,7 +71,6 @@ require('db.php');
                     <p>Admins Information</p>
                 </a>
           </li>
-
         </ul>
       </div>
     </div>
