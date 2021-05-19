@@ -44,6 +44,8 @@
                             $_SESSION['adname'] = $admname;
                             $_SESSION['ademail'] = $email;
                             $_SESSION['adpass'] = $password;
+                            $_SESSION['srcid']="";
+                            $_SESSION['destid']="";
                             header("Location: ./dashboard.php");
                         }else{
                             echo "<div >

@@ -1,7 +1,8 @@
 <?php
 require_once'db.php';
 include("./auth.php");
-
+$source="";
+$destination="";
 if(isset($_REQUEST['dest'])) {
     $placeid = intval($_GET['dest']);
     $_SESSION['destid']=$placeid;
@@ -186,10 +187,12 @@ if(isset($_REQUEST['src'])) {
                     $sql1 = "SELECT * from `places` WHERE id='$src'";
                     $res1 = $con->query($sql1);
                     $row1 = mysqli_fetch_assoc($res1);
+                    if($res1->num_rows>0)
                     $source = $row1['PlaceName'];
                     $sql2 = "SELECT * from `places` WHERE id='$dest'";
                     $res2 = $con->query($sql2);
                     $row2 = mysqli_fetch_assoc($res2);
+                    if($res2->num_rows>0)
                     $destination = $row2['PlaceName'];
                     ?>
                         <h4 class="card-title"><b>(&nbsp;&nbsp;<?php echo $source;?>&nbsp;&nbsp;<->&nbsp;&nbsp;<?php echo $destination ?>&nbsp;&nbsp;) Drivers</b></h4>
@@ -205,7 +208,9 @@ if(isset($_REQUEST['src'])) {
                     ?>
                         <div class="font-icon-list col-lg-3 col-md-6 col-sm-6 col-xs-6 col-xs-6">
                             <div class="font-icon-detail">
-                                <i class="fas fa-star-half"></i>
+                                <i class="fas fa-star" style="color:orange;font-size: 20px"></i>
+                                <i class="fas fa-star-half-alt" style="color:orange;font-size: 20px"></i>
+                                <i class="far fa-star" style="color:orange;font-size: 20px"></i>
                                 <p style="font-size: 20px;color: black"><?php
                                     echo $drivername;
                                     ?></p>
