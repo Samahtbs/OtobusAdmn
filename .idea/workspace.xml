@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f6bb5652-20fb-4d83-8fa4-ef89927f6bdf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker2137926861.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker300747917.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker898666124.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker1118265385.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker207630078.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker317874178.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker402452241.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker796124475.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker973475083.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/drivers.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/drivers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/login.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +104,8 @@
       <workItem from="1621254017489" duration="304000" />
       <workItem from="1621254361983" duration="607000" />
       <workItem from="1621255028393" duration="7000" />
-      <workItem from="1621329876645" duration="55409000" />
+      <workItem from="1621329876645" duration="55824000" />
+      <workItem from="1621495112004" duration="12594000" />
     </task>
     <task id="LOCAL؜٠٠٠٠١" summary="ss">
       <created>1620757619931</created>
@@ -261,10 +264,10 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="93" y="93" width="1095" height="535" key="com.intellij.dvcs.ui.CompareBranchesDialog/0.0.1280.720@0.0.1280.720" timestamp="1621254644691" />
-    <state x="337" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1621329880711">
+    <state x="337" y="186" key="com.intellij.ide.util.TipDialog" timestamp="1621495117180">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
-    <state x="337" y="186" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1621329880711" />
+    <state x="337" y="186" key="com.intellij.ide.util.TipDialog/0.0.1280.720@0.0.1280.720" timestamp="1621495117180" />
     <state x="0" y="0" width="588" height="720" key="find.popup" timestamp="1621253862186">
       <screen x="0" y="0" width="1280" height="720" />
     </state>

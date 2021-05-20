@@ -128,10 +128,8 @@ if(isset($_REQUEST['src'])) {
                 <div class="”col-3">
                     <div class="card">
                         <?php
-                        $src=$_SESSION['srcid'];
-                        $dest=$_SESSION['destid'];
-                        //echo $src;
-                        //echo $dest;
+                        $src=$_SESSION['srcid'];//echo $src;
+                        $dest=$_SESSION['destid'];//echo $dest;
                         ?>
                         <div class="container-fluid">
                         <div class="row" >
@@ -184,18 +182,20 @@ if(isset($_REQUEST['src'])) {
                 <div class="card">
                     <div class="card-header">
                         <?php
-                    $sql1 = "SELECT * from `places` WHERE id='$src'";
-                    $res1 = $con->query($sql1);
-                    $row1 = mysqli_fetch_assoc($res1);
-                    if($res1->num_rows>0)
-                    $source = $row1['PlaceName'];
-                    $sql2 = "SELECT * from `places` WHERE id='$dest'";
-                    $res2 = $con->query($sql2);
-                    $row2 = mysqli_fetch_assoc($res2);
-                    if($res2->num_rows>0)
-                    $destination = $row2['PlaceName'];
-                    ?>
-                        <h4 class="card-title"><b>(&nbsp;&nbsp;<?php echo $source;?>&nbsp;&nbsp;<->&nbsp;&nbsp;<?php echo $destination ?>&nbsp;&nbsp;) Drivers</b></h4>
+
+                        $sql1 = "SELECT * from `places` WHERE id='$src'";
+                        $res1 = $con->query($sql1);
+                        $row1 = mysqli_fetch_assoc($res1);
+                        if($res1->num_rows>0)
+                            $source = $row1['PlaceName'];
+
+                        $sql2 = "SELECT * from `places` WHERE id='$dest'";
+                        $res2 = $con->query($sql2);
+                        $row2 = mysqli_fetch_assoc($res2);
+                        if($res2->num_rows>0)
+                            $destination = $row2['PlaceName'];
+                        ?>
+                        <h4 class="card-title"><b>(&nbsp;&nbsp;<?php echo $source;?> &nbsp; <i class="fas fa-arrows-alt-h"></i> &nbsp; <?php echo $destination ?>&nbsp;&nbsp;) Drivers</b></h4>
                     </div>
                     <div class="card-body">
                     <?php
@@ -205,17 +205,456 @@ if(isset($_REQUEST['src'])) {
                     for($i=0;$i<$result->num_rows;$i++) {
                         $row = mysqli_fetch_assoc($result);
                         $drivername= $row['name'];
+                        $driveremail=$row['email'];
+
+                        $taq=$row['taqyeem'];
+                        if($taq<0.3){
                     ?>
                         <div class="font-icon-list col-lg-3 col-md-6 col-sm-6 col-xs-6 col-xs-6">
                             <div class="font-icon-detail">
-                                <i class="fas fa-star" style="color:orange;font-size: 20px"></i>
-                                <i class="fas fa-star-half-alt" style="color:orange;font-size: 20px"></i>
                                 <i class="far fa-star" style="color:orange;font-size: 20px"></i>
-                                <p style="font-size: 20px;color: black"><?php
+                                <i class="far fa-star" style="color:orange;font-size: 20px"></i>
+                                <i class="far fa-star" style="color:orange;font-size: 20px"></i>
+                              <!--<p style="font-size: 15px;color: black"> --><?php
+                                  // echo $taq;
+                                  //  ?><!--</p>-->
+                                <p style="font-size: 20px;color: black">
+                                   <b>
+                                    <?php
                                     echo $drivername;
-                                    ?></p>
-                            </div>
+                                    ?>
+                                   </b>
+                                </p>
+                                <p style="font-size: 15px;color: black">
+                                    <?php
+                                    echo $driveremail;
+                                    ?>
+                                    <a href="" data-toggle="modal" data-target="#businfo" onclick="myfunction(this)">
+                                        <span class="glyphicon glyphicon-new-window"></span>
+                                    </a>
+                                </p>
+
+                                <div class="modal fade" id="businfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLongTitle"><b>Driver Information</b></h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h5 class="text-center">Email :&nbsp;&nbsp;<b><?php echo $driveremail; ?></b></h5>
+                                                <div class="dropdown-divider"></div>
+                                                <h5 class="text-center">Phone :&nbsp;&nbsp;<b><?php echo $driverphone; ?></b></h5>
+                                                <div class="dropdown-divider"></div>
+                                                <h5 class="text-center" style="color: red">Report Times :&nbsp;&nbsp;<b><?php echo $reptimes; ?></b></h5>
+                                                <div class="dropdown-divider"></div>
+                                                <h5 class="text-center">Bus Plate Card :&nbsp;&nbsp;<b><?php echo $busid; ?></b></h5>
+                                                <div class="dropdown-divider"></div>
+                                                <h5 class="text-center">Bus Type :&nbsp;&nbsp;<b><?php echo $type; ?></b></h5>
+                                                <div class="dropdown-divider"></div>
+                                                <h5 class="text-center">Number of Passengers :&nbsp;&nbsp;<b><?php echo $passnum; ?></b></h5>
+                                                <div class="dropdown-divider"></div>
+                                                <h5 class="modal-title" id="exampleModalLongTitle">Driving License:</h5>
+                                                <img src=<?php echo '../driverimgs/'.$row['license']?> alt="license" />
+                                                <div class="dropdown-divider"></div>
+                                                <h5 class="text-center">Bud ID Card :</h5>
+                                                <img src=<?php echo '../driverimgs/'.$idcardname?> alt="idcard" />
+                                                <div class="dropdown-divider"></div>
+                                                <h5 class="text-center">Insurance card :</h5>
+                                                <img src=<?php echo '../driverimgs/'.$insname?> alt="insurancecard" />
+                                                <div class="dropdown-divider"></div>
+                                                <h5 class="text-center">Insurance End Date :&nbsp;&nbsp;<b><?php echo $insenddate; ?></b></h5>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                               </div>
                         </div>
+                            <?php
+                        }elseif($taq<1.1){
+                           ?>
+                            <div class="font-icon-list col-lg-3 col-md-6 col-sm-6 col-xs-6 col-xs-6" >
+                            <!--<div class="border border-dark"></div>-->
+                                <div class="font-icon-detail" >
+                                    <i class="fas fa-star-half-alt" style="color:orange;font-size: 20px"></i>
+                                    <i class="far fa-star" style="color:orange;font-size: 20px"></i>
+                                    <i class="far fa-star" style="color:orange;font-size: 20px"></i>
+                                    <p style="font-size: 20px;color: black">
+                                        <b>
+                                        <?php
+                                        echo $drivername;
+                                        ?>
+                                        </b>
+                                    </p>
+                                    <p style="font-size: 15px;color: black">
+                                        <?php
+                                        echo $driveremail;
+                                        ?>
+                                        <a href="" data-toggle="modal" data-target="#businfo" onclick="myfunction(this)">
+                                            <span class="glyphicon glyphicon-new-window"></span>
+                                        </a>
+                                    </p>
+                                    <div class="modal fade" id="businfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle"><b>Driver Information</b></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h5 class="text-center">Email :&nbsp;&nbsp;<b><?php echo $driveremail; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Phone :&nbsp;&nbsp;<b><?php echo $driverphone; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center" style="color: red">Report Times :&nbsp;&nbsp;<b><?php echo $reptimes; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Bus Plate Card :&nbsp;&nbsp;<b><?php echo $busid; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Bus Type :&nbsp;&nbsp;<b><?php echo $type; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Number of Passengers :&nbsp;&nbsp;<b><?php echo $passnum; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Driving License:</h5>
+                                                    <img src=<?php echo '../driverimgs/'.$row['license']?> alt="license" />
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Bud ID Card :</h5>
+                                                    <img src=<?php echo '../driverimgs/'.$idcardname?> alt="idcard" />
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Insurance card :</h5>
+                                                    <img src=<?php echo '../driverimgs/'.$insname?> alt="insurancecard" />
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Insurance End Date :&nbsp;&nbsp;<b><?php echo $insenddate; ?></b></h5>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                        }elseif($taq<1.7){
+                            ?>
+                            <div class="font-icon-list col-lg-3 col-md-6 col-sm-6 col-xs-6 col-xs-6">
+                                <div class="font-icon-detail">
+                                    <i class="fas fa-star" style="color:orange;font-size: 20px"></i>
+                                    <i class="far fa-star" style="color:orange;font-size: 20px"></i>
+                                    <i class="far fa-star" style="color:orange;font-size: 20px"></i>
+                                    <p style="font-size: 20px;color: black">
+                                        <b>
+                                            <?php
+                                            echo $drivername;
+                                            ?>
+                                        </b>
+                                    </p>
+                                    <p style="font-size: 15px;color: black">
+                                        <?php
+                                        echo $driveremail;
+                                        ?>
+                                        <a href="" data-toggle="modal" data-target="#businfo" onclick="myfunction(this)">
+                                            <span class="glyphicon glyphicon-new-window"></span>
+                                        </a>
+                                    </p>
+                                    <div class="modal fade" id="businfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle"><b>Driver Information</b></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h5 class="text-center">Email :&nbsp;&nbsp;<b><?php echo $driveremail; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Phone :&nbsp;&nbsp;<b><?php echo $driverphone; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center" style="color: red">Report Times :&nbsp;&nbsp;<b><?php echo $reptimes; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Bus Plate Card :&nbsp;&nbsp;<b><?php echo $busid; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Bus Type :&nbsp;&nbsp;<b><?php echo $type; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Number of Passengers :&nbsp;&nbsp;<b><?php echo $passnum; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Driving License:</h5>
+                                                    <img src=<?php echo '../driverimgs/'.$row['license']?> alt="license" />
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Bud ID Card :</h5>
+                                                    <img src=<?php echo '../driverimgs/'.$idcardname?> alt="idcard" />
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Insurance card :</h5>
+                                                    <img src=<?php echo '../driverimgs/'.$insname?> alt="insurancecard" />
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Insurance End Date :&nbsp;&nbsp;<b><?php echo $insenddate; ?></b></h5>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                        }elseif($taq<2.6){
+                            ?>
+                            <div class="font-icon-list col-lg-3 col-md-6 col-sm-6 col-xs-6 col-xs-6">
+                                <div class="font-icon-detail">
+                                    <i class="fas fa-star" style="color:orange;font-size: 20px"></i>
+                                    <i class="fas fa-star-half-alt" style="color:orange;font-size: 20px"></i>
+                                    <i class="far fa-star" style="color:orange;font-size: 20px"></i>
+                                    <p style="font-size: 20px;color: black">
+                                        <b>
+                                            <?php
+                                            echo $drivername;
+                                            ?>
+                                        </b>
+                                    </p>
+                                    <p style="font-size: 15px;color: black">
+                                        <?php
+                                        echo $driveremail;
+                                        ?>
+                                        <a href="" data-toggle="modal" data-target="#businfo" onclick="myfunction(this)">
+                                            <span class="glyphicon glyphicon-new-window"></span>
+                                        </a>
+                                    </p>
+                                    <div class="modal fade" id="businfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle"><b>Driver Information</b></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h5 class="text-center">Email :&nbsp;&nbsp;<b><?php echo $driveremail; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Phone :&nbsp;&nbsp;<b><?php echo $driverphone; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center" style="color: red">Report Times :&nbsp;&nbsp;<b><?php echo $reptimes; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Bus Plate Card :&nbsp;&nbsp;<b><?php echo $busid; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Bus Type :&nbsp;&nbsp;<b><?php echo $type; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Number of Passengers :&nbsp;&nbsp;<b><?php echo $passnum; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Driving License:</h5>
+                                                    <img src=<?php echo '../driverimgs/'.$row['license']?> alt="license" />
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Bud ID Card :</h5>
+                                                    <img src=<?php echo '../driverimgs/'.$idcardname?> alt="idcard" />
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Insurance card :</h5>
+                                                    <img src=<?php echo '../driverimgs/'.$insname?> alt="insurancecard" />
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Insurance End Date :&nbsp;&nbsp;<b><?php echo $insenddate; ?></b></h5>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                        }elseif($taq<3.2){
+                            ?>
+                            <div class="font-icon-list col-lg-3 col-md-6 col-sm-6 col-xs-6 col-xs-6">
+                                <div class="font-icon-detail">
+                                    <i class="fas fa-star" style="color:orange;font-size: 20px"></i>
+                                    <i class="fas fa-star" style="color:orange;font-size: 20px"></i>
+                                    <i class="far fa-star" style="color:orange;font-size: 20px"></i>
+                                    <p style="font-size: 20px;color: black">
+                                        <b>
+                                            <?php
+                                            echo $drivername;
+                                            ?>
+                                        </b>
+                                    </p>
+                                    <p style="font-size: 15px;color: black">
+                                        <?php
+                                        echo $driveremail;
+                                        ?>
+                                        <a href="" data-toggle="modal" data-target="#businfo" onclick="myfunction(this)">
+                                            <span class="glyphicon glyphicon-new-window"></span>
+                                        </a>
+                                    </p>
+                                    <div class="modal fade" id="businfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle"><b>Driver Information</b></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h5 class="text-center">Email :&nbsp;&nbsp;<b><?php echo $driveremail; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Phone :&nbsp;&nbsp;<b><?php echo $driverphone; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center" style="color: red">Report Times :&nbsp;&nbsp;<b><?php echo $reptimes; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Bus Plate Card :&nbsp;&nbsp;<b><?php echo $busid; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Bus Type :&nbsp;&nbsp;<b><?php echo $type; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Number of Passengers :&nbsp;&nbsp;<b><?php echo $passnum; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Driving License:</h5>
+                                                    <img src=<?php echo '../driverimgs/'.$row['license']?> alt="license" />
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Bud ID Card :</h5>
+                                                    <img src=<?php echo '../driverimgs/'.$idcardname?> alt="idcard" />
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Insurance card :</h5>
+                                                    <img src=<?php echo '../driverimgs/'.$insname?> alt="insurancecard" />
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Insurance End Date :&nbsp;&nbsp;<b><?php echo $insenddate; ?></b></h5>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                        }elseif($taq<4.2){
+                            ?>
+                            <div class="font-icon-list col-lg-3 col-md-6 col-sm-6 col-xs-6 col-xs-6">
+                                <div class="font-icon-detail">
+                                    <i class="fas fa-star" style="color:orange;font-size: 20px"></i>
+                                    <i class="fas fa-star" style="color:orange;font-size: 20px"></i>
+                                    <i class="fas fa-star-half-alt" style="color:orange;font-size: 20px"></i>
+                                    <p style="font-size: 20px;color: black">
+                                        <b>
+                                            <?php
+                                            echo $drivername;
+                                            ?>
+                                        </b>
+                                    </p>
+                                    <p style="font-size: 15px;color: black">
+                                        <?php
+                                        echo $driveremail;
+                                        ?>
+                                        <a href="" data-toggle="modal" data-target="#businfo" onclick="myfunction(this)">
+                                            <span class="glyphicon glyphicon-new-window"></span>
+                                        </a>
+                                    </p>
+                                    <div class="modal fade" id="businfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle"><b>Driver Information</b></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h5 class="text-center">Email :&nbsp;&nbsp;<b><?php echo $driveremail; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Phone :&nbsp;&nbsp;<b><?php echo $driverphone; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center" style="color: red">Report Times :&nbsp;&nbsp;<b><?php echo $reptimes; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Bus Plate Card :&nbsp;&nbsp;<b><?php echo $busid; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Bus Type :&nbsp;&nbsp;<b><?php echo $type; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Number of Passengers :&nbsp;&nbsp;<b><?php echo $passnum; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Driving License:</h5>
+                                                    <img src=<?php echo '../driverimgs/'.$row['license']?> alt="license" />
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Bud ID Card :</h5>
+                                                    <img src=<?php echo '../driverimgs/'.$idcardname?> alt="idcard" />
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Insurance card :</h5>
+                                                    <img src=<?php echo '../driverimgs/'.$insname?> alt="insurancecard" />
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Insurance End Date :&nbsp;&nbsp;<b><?php echo $insenddate; ?></b></h5>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                        }elseif($taq<=5){
+                            ?>
+                            <div class="font-icon-list col-lg-3 col-md-6 col-sm-6 col-xs-6 col-xs-6">
+                                <div class="font-icon-detail">
+                                    <i class="fas fa-star" style="color:orange;font-size: 20px"></i>
+                                    <i class="fas fa-star" style="color:orange;font-size: 20px"></i>
+                                    <i class="fas fa-star" style="color:orange;font-size: 20px"></i>
+                                    <p style="font-size: 20px;color: black">
+                                        <b>
+                                            <?php
+                                            echo $drivername;
+                                            ?>
+                                        </b>
+                                    </p>
+                                    <div class="modal fade" id="businfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle"><b>Driver Information</b></h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <h5 class="text-center">Email :&nbsp;&nbsp;<b><?php echo $driveremail; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Phone :&nbsp;&nbsp;<b><?php echo $driverphone; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center" style="color: red">Report Times :&nbsp;&nbsp;<b><?php echo $reptimes; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Bus Plate Card :&nbsp;&nbsp;<b><?php echo $busid; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Bus Type :&nbsp;&nbsp;<b><?php echo $type; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Number of Passengers :&nbsp;&nbsp;<b><?php echo $passnum; ?></b></h5>
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Driving License:</h5>
+                                                    <img src=<?php echo '../driverimgs/'.$row['license']?> alt="license" />
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Bud ID Card :</h5>
+                                                    <img src=<?php echo '../driverimgs/'.$idcardname?> alt="idcard" />
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Insurance card :</h5>
+                                                    <img src=<?php echo '../driverimgs/'.$insname?> alt="insurancecard" />
+                                                    <div class="dropdown-divider"></div>
+                                                    <h5 class="text-center">Insurance End Date :&nbsp;&nbsp;<b><?php echo $insenddate; ?></b></h5>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                        ?>
                     <?php
                     }
                     ?>
@@ -225,6 +664,9 @@ if(isset($_REQUEST['src'])) {
         </div>
     </div>
 </div>
+
+
+<!--   Core JS Files   -->
 <script>
     function autocomplete(inp, arr) {
         /*the autocomplete function takes two arguments,
@@ -325,8 +767,6 @@ if(isset($_REQUEST['src'])) {
     var arr = ["UK", "France", "Spain", "Russia", "Italy", "Turkey", "Austrlia", "USA", "Egypt", "Lebanon", "Germany", "Portughal", "Emirate", "Switzerland", "Brazil", "Canada", "Jaban", "Malaysia", "Trabzon"];
     autocomplete(document.getElementById("inp"), arr);
 </script>
-
-<!--   Core JS Files   -->
 <script src="../assets/js/core/jquery.min.js"></script>
 <script src="../assets/js/core/popper.min.js"></script>
 <script src="../assets/js/core/bootstrap.min.js"></script>
