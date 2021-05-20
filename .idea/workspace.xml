@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f6bb5652-20fb-4d83-8fa4-ef89927f6bdf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker1118265385.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker207630078.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker317874178.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker402452241.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker796124475.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/driverimgs/image_picker973475083.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pages/delete.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/delete.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pages/drivers.php" beforeDir="false" afterPath="$PROJECT_DIR$/pages/drivers.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -105,7 +100,7 @@
       <workItem from="1621254361983" duration="607000" />
       <workItem from="1621255028393" duration="7000" />
       <workItem from="1621329876645" duration="55824000" />
-      <workItem from="1621495112004" duration="12594000" />
+      <workItem from="1621495112004" duration="16911000" />
     </task>
     <task id="LOCAL؜٠٠٠٠١" summary="ss">
       <created>1620757619931</created>
@@ -161,7 +156,13 @@
       <option name="presentableId" value="LOCAL؜٠٠٠٠٩" />
       <updated>1621461590569</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL؜٠٠٠١٠" summary="sss">
+      <created>1621510888457</created>
+      <option name="number" value="LOCAL؜٠٠٠١٠" />
+      <option name="presentableId" value="LOCAL؜٠٠٠١٠" />
+      <updated>1621510888457</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,7 +210,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="ss" />
     <MESSAGE value="edsdf" />
-    <option name="LAST_COMMIT_MESSAGE" value="edsdf" />
+    <MESSAGE value="sss" />
+    <option name="LAST_COMMIT_MESSAGE" value="sss" />
   </component>
   <component name="WindowStateProjectService">
     <state x="0" y="39" key="#CLI_Interpreters" timestamp="1617897540005">

@@ -11,6 +11,27 @@ if(isset($_REQUEST['src'])) {
     $placeid = intval($_GET['src']);
     $_SESSION['srcid']=$placeid;
 }
+
+if(isset($_REQUEST['drvid'])) {
+    $drvid = intval($_GET['drvid']);
+    $sql = "SELECT * from `driver` WHERE driverid='$drvid' ";
+    $result = $con->query($sql);
+    $row = mysqli_fetch_assoc($result);
+    $reptimes=$row['repcnt'];
+    $driverphone=$row['phonenum'];
+    $driveremail=$row['email'];
+    $busid=$row['busid'];
+    $query="SELECT * from `bus` WHERE busid ='$busid'";
+    $res = $con->query($query);
+    $ro = mysqli_fetch_assoc($res);
+    $type=$ro['type'];
+    $passnum=$ro['numofpass'];
+    $idcardname=$ro['idcard'];
+    $encidcard=$ro['cardencoded'];
+    $insname=$ro['insurname'];
+    $inscard=$ro['insurencoded'];
+    $insenddate=$ro['insurend'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -200,17 +221,17 @@ if(isset($_REQUEST['src'])) {
                     <div class="card-body">
                     <?php
                     $cnt=1;
-                    $sql = "SELECT * from `driver` WHERE (begname='$source' AND endname='$destination') OR (begname='$destination' AND endname='$source')";
+                    $sql = "SELECT * from `driver` WHERE (begname='$source' AND endname='$destination' AND active=0b1) OR (begname='$destination' AND endname='$source' AND active=0b1) ";
                     $result = $con->query($sql);
                     for($i=0;$i<$result->num_rows;$i++) {
                         $row = mysqli_fetch_assoc($result);
                         $drivername= $row['name'];
-                        $driveremail=$row['email'];
+                        $driverid=$row['driverid'];
 
                         $taq=$row['taqyeem'];
                         if($taq<0.3){
                     ?>
-                        <div class="font-icon-list col-lg-3 col-md-6 col-sm-6 col-xs-6 col-xs-6">
+                            <div class="font-icon-list col-lg-3 col-md-6 col-sm-6 col-xs-6 col-xs-6">
                             <div class="font-icon-detail">
                                 <i class="far fa-star" style="color:orange;font-size: 20px"></i>
                                 <i class="far fa-star" style="color:orange;font-size: 20px"></i>
@@ -225,15 +246,18 @@ if(isset($_REQUEST['src'])) {
                                     ?>
                                    </b>
                                 </p>
-                                <p style="font-size: 15px;color: black">
+                                <!--  ***********************************************  -->
+                                <p style="font-size: 13px;color: black">
+                                    <a href="drivers.php?drvid=<?php echo $driverid;?>">
                                     <?php
-                                    echo $driveremail;
+                                    echo "Get Driver Information";
                                     ?>
-                                    <a href="" data-toggle="modal" data-target="#businfo" onclick="myfunction(this)">
+                                    </a>
+                                    <a href="" data-toggle="modal" data-target="#businfo">
                                         <span class="glyphicon glyphicon-new-window"></span>
                                     </a>
                                 </p>
-
+                                <!--  ***********************************************  -->
                                 <div class="modal fade" id="businfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -268,6 +292,14 @@ if(isset($_REQUEST['src'])) {
                                                 <h5 class="text-center">Insurance End Date :&nbsp;&nbsp;<b><?php echo $insenddate; ?></b></h5>
                                             </div>
                                             <div class="modal-footer">
+                                                <!--  ***********************************************  -->
+                                                <?php
+                                                $_SESSION['driveremail']=$driveremail;
+                                                ?>
+                                                <form action="delete.php">
+                                                    <button class="btn btn-danger btn-xs">Delete Driver</button>
+                                                </form>
+                                                <!--  ***********************************************  -->
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
@@ -291,14 +323,18 @@ if(isset($_REQUEST['src'])) {
                                         ?>
                                         </b>
                                     </p>
-                                    <p style="font-size: 15px;color: black">
-                                        <?php
-                                        echo $driveremail;
-                                        ?>
-                                        <a href="" data-toggle="modal" data-target="#businfo" onclick="myfunction(this)">
+                                    <!--  ***********************************************  -->
+                                    <p style="font-size: 13px;color: black">
+                                        <a href="drivers.php?drvid=<?php echo $driverid;?>">
+                                            <?php
+                                            echo "Get Driver Information";
+                                            ?>
+                                        </a>
+                                        <a href="" data-toggle="modal" data-target="#businfo">
                                             <span class="glyphicon glyphicon-new-window"></span>
                                         </a>
                                     </p>
+                                    <!--  ***********************************************  -->
                                     <div class="modal fade" id="businfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -333,6 +369,14 @@ if(isset($_REQUEST['src'])) {
                                                     <h5 class="text-center">Insurance End Date :&nbsp;&nbsp;<b><?php echo $insenddate; ?></b></h5>
                                                 </div>
                                                 <div class="modal-footer">
+                                                    <!--  ***********************************************  -->
+                                                    <?php
+                                                    $_SESSION['driveremail']=$driveremail;
+                                                    ?>
+                                                    <form action="delete.php">
+                                                        <button class="btn btn-danger btn-xs">Delete Driver</button>
+                                                    </form>
+                                                    <!--  ***********************************************  -->
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
@@ -355,14 +399,18 @@ if(isset($_REQUEST['src'])) {
                                             ?>
                                         </b>
                                     </p>
-                                    <p style="font-size: 15px;color: black">
-                                        <?php
-                                        echo $driveremail;
-                                        ?>
-                                        <a href="" data-toggle="modal" data-target="#businfo" onclick="myfunction(this)">
+                                    <!--  ***********************************************  -->
+                                    <p style="font-size: 13px;color: black">
+                                        <a href="drivers.php?drvid=<?php echo $driverid;?>">
+                                            <?php
+                                            echo "Get Driver Information";
+                                            ?>
+                                        </a>
+                                        <a href="" data-toggle="modal" data-target="#businfo">
                                             <span class="glyphicon glyphicon-new-window"></span>
                                         </a>
                                     </p>
+                                    <!--  ***********************************************  -->
                                     <div class="modal fade" id="businfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -397,6 +445,14 @@ if(isset($_REQUEST['src'])) {
                                                     <h5 class="text-center">Insurance End Date :&nbsp;&nbsp;<b><?php echo $insenddate; ?></b></h5>
                                                 </div>
                                                 <div class="modal-footer">
+                                                    <!--  ***********************************************  -->
+                                                    <?php
+                                                    $_SESSION['driveremail']=$driveremail;
+                                                    ?>
+                                                    <form action="delete.php">
+                                                        <button class="btn btn-danger btn-xs">Delete Driver</button>
+                                                    </form>
+                                                    <!--  ***********************************************  -->
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
@@ -419,14 +475,18 @@ if(isset($_REQUEST['src'])) {
                                             ?>
                                         </b>
                                     </p>
-                                    <p style="font-size: 15px;color: black">
-                                        <?php
-                                        echo $driveremail;
-                                        ?>
-                                        <a href="" data-toggle="modal" data-target="#businfo" onclick="myfunction(this)">
+                                    <!--  ***********************************************  -->
+                                    <p style="font-size: 13px;color: black">
+                                        <a href="drivers.php?drvid=<?php echo $driverid;?>">
+                                            <?php
+                                            echo "Get Driver Information";
+                                            ?>
+                                        </a>
+                                        <a href="" data-toggle="modal" data-target="#businfo">
                                             <span class="glyphicon glyphicon-new-window"></span>
                                         </a>
                                     </p>
+                                    <!--  ***********************************************  -->
                                     <div class="modal fade" id="businfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -461,6 +521,14 @@ if(isset($_REQUEST['src'])) {
                                                     <h5 class="text-center">Insurance End Date :&nbsp;&nbsp;<b><?php echo $insenddate; ?></b></h5>
                                                 </div>
                                                 <div class="modal-footer">
+                                                    <!--  ***********************************************  -->
+                                                    <?php
+                                                    $_SESSION['driveremail']=$driveremail;
+                                                    ?>
+                                                    <form action="delete.php">
+                                                        <button class="btn btn-danger btn-xs">Delete Driver</button>
+                                                    </form>
+                                                    <!--  ***********************************************  -->
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
@@ -483,14 +551,18 @@ if(isset($_REQUEST['src'])) {
                                             ?>
                                         </b>
                                     </p>
-                                    <p style="font-size: 15px;color: black">
-                                        <?php
-                                        echo $driveremail;
-                                        ?>
-                                        <a href="" data-toggle="modal" data-target="#businfo" onclick="myfunction(this)">
+                                    <!--  ***********************************************  -->
+                                    <p style="font-size: 13px;color: black">
+                                        <a href="drivers.php?drvid=<?php echo $driverid;?>">
+                                            <?php
+                                            echo "Get Driver Information";
+                                            ?>
+                                        </a>
+                                        <a href="" data-toggle="modal" data-target="#businfo">
                                             <span class="glyphicon glyphicon-new-window"></span>
                                         </a>
                                     </p>
+                                    <!--  ***********************************************  -->
                                     <div class="modal fade" id="businfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -525,6 +597,14 @@ if(isset($_REQUEST['src'])) {
                                                     <h5 class="text-center">Insurance End Date :&nbsp;&nbsp;<b><?php echo $insenddate; ?></b></h5>
                                                 </div>
                                                 <div class="modal-footer">
+                                                    <!--  ***********************************************  -->
+                                                    <?php
+                                                    $_SESSION['driveremail']=$driveremail;
+                                                    ?>
+                                                    <form action="delete.php">
+                                                        <button class="btn btn-danger btn-xs">Delete Driver</button>
+                                                    </form>
+                                                    <!--  ***********************************************  -->
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
@@ -547,14 +627,18 @@ if(isset($_REQUEST['src'])) {
                                             ?>
                                         </b>
                                     </p>
-                                    <p style="font-size: 15px;color: black">
-                                        <?php
-                                        echo $driveremail;
-                                        ?>
-                                        <a href="" data-toggle="modal" data-target="#businfo" onclick="myfunction(this)">
+                                    <!--  ***********************************************  -->
+                                    <p style="font-size: 13px;color: black">
+                                        <a href="drivers.php?drvid=<?php echo $driverid;?>">
+                                            <?php
+                                            echo "Get Driver Information";
+                                            ?>
+                                        </a>
+                                        <a href="" data-toggle="modal" data-target="#businfo">
                                             <span class="glyphicon glyphicon-new-window"></span>
                                         </a>
                                     </p>
+                                    <!--  ***********************************************  -->
                                     <div class="modal fade" id="businfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -589,6 +673,14 @@ if(isset($_REQUEST['src'])) {
                                                     <h5 class="text-center">Insurance End Date :&nbsp;&nbsp;<b><?php echo $insenddate; ?></b></h5>
                                                 </div>
                                                 <div class="modal-footer">
+                                                    <!--  ***********************************************  -->
+                                                    <?php
+                                                    $_SESSION['driveremail']=$driveremail;
+                                                    ?>
+                                                    <form action="delete.php">
+                                                        <button class="btn btn-danger btn-xs">Delete Driver</button>
+                                                    </form>
+                                                    <!--  ***********************************************  -->
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
@@ -611,6 +703,18 @@ if(isset($_REQUEST['src'])) {
                                             ?>
                                         </b>
                                     </p>
+                                    <!--  ***********************************************  -->
+                                    <p style="font-size: 13px;color: black">
+                                        <a href="drivers.php?drvid=<?php echo $driverid;?>">
+                                            <?php
+                                            echo "Get Driver Information";
+                                            ?>
+                                        </a>
+                                        <a href="" data-toggle="modal" data-target="#businfo">
+                                            <span class="glyphicon glyphicon-new-window"></span>
+                                        </a>
+                                    </p>
+                                    <!--  ***********************************************  -->
                                     <div class="modal fade" id="businfo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
                                             <div class="modal-content">
@@ -645,6 +749,14 @@ if(isset($_REQUEST['src'])) {
                                                     <h5 class="text-center">Insurance End Date :&nbsp;&nbsp;<b><?php echo $insenddate; ?></b></h5>
                                                 </div>
                                                 <div class="modal-footer">
+                                                    <!--  ***********************************************  -->
+                                                    <?php
+                                                    $_SESSION['driveremail']=$driveremail;
+                                                    ?>
+                                                    <form action="delete.php">
+                                                        <button class="btn btn-danger btn-xs">Delete Driver</button>
+                                                    </form>
+                                                    <!--  ***********************************************  -->
                                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>

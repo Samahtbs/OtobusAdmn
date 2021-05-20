@@ -3,13 +3,12 @@ require("db.php");
 include("./auth.php");
 $adminname=$_SESSION['adname'];
 $driveremail=$_SESSION['driveremail'];
-$drivername=$_SESSION['drivername'];
 $query = "DELETE FROM `driver` WHERE email = '$driveremail'";
 $result = mysqli_query($con,$query);
 //**************************************
 $to_email = $driveremail;
 $subject = "طلب سائق جديد";
-$body="مرحباً بك , نأسف للقول بأن معلوماتك التي تم تسجيلها قد كانت غير مستوفية للشروط أو غير كافية لذلك لم يتم قبولك كسائق جديد , الرجاء مراجعة المعلومات و التسجيل مرة أخرى $drivername";
+$body="نأسف للقول بأن معلوماتك التي تم تسجيلها قد كانت غير مستوفية للشروط أو غير كافية لذلك لم يتم قبولك كسائق جديد , الرجاء مراجعة المعلومات و التسجيل مرة أخرى ";
 $headers = "From: otobus@gmail.com";
 ?>
 <!DOCTYPE html>
@@ -131,7 +130,7 @@ $headers = "From: otobus@gmail.com";
                         <h5 style="color: red ;text-align: center">
                             <?php
                             if (mail($to_email, $subject, $body, $headers)&&$result) {
-                                echo " ***** Driver <b style='color: black'>$drivername</b> Deleted successfuly ***** ";
+                                echo " ***** Driver Deleted successfuly ***** ";
                             } else {
                                 echo "Email sending failed...";
                             }
