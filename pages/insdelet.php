@@ -1,6 +1,30 @@
 <?php
-require("db.php");
+require_once'db.php';
 include("./auth.php");
+$ReqCnt=0;
+$InsCnt=0;
+$DrvPep=0;
+$PssRep=0;
+$Count=0;
+
+$sq1 = "SELECT * from `driver` WHERE active=0b0";
+$re1 = $con->query($sq1);
+$ReqCnt=$re1->num_rows;
+
+$sq2 = "SELECT * from `driver` WHERE onofflag=0b1";
+$re2 = $con->query($sq2);
+$InsCnt=$re2->num_rows;
+
+$sq3 = "SELECT * from `feedback` WHERE report='1'";
+$re3 = $con->query($sq3);
+$DrvPep=$re3->num_rows;
+
+$sq4 = "SELECT * from `passenger` WHERE report='1'";
+$re4 = $con->query($sq4);
+$PssRep=$re4->num_rows;
+
+$Count=$ReqCnt+$InsCnt+$DrvPep+$PssRep;
+
 $driveremail=$_SESSION['driveremail'];
 $drivername=$_SESSION['drivername'];
 //$query = "DELETE FROM `driver` WHERE email = '$driveremail'";
@@ -34,6 +58,21 @@ $headers = "From: otobus@gmail.com";
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
     <link href="../assets/demo/demo.css" rel="stylesheet" />
+    <style>
+        .notification {
+            color: white;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            border-radius: 2px;
+        }
+        .notification .badge {
+            position: absolute;
+            border-radius: 50%;
+            background: red;
+            color: white;
+        }
+    </style>
 </head>
 
 <body class="user-profile">
@@ -53,9 +92,15 @@ $headers = "From: otobus@gmail.com";
                     </a>
                 </li>
                 <li>
+                    <a href="passengers.php">
+                        <i class="glyphicon glyphicon-user"></i>
+                        <p>Otobüs Passengers</p>
+                    </a>
+                </li>
+                <li>
                     <a href="drivers.php">
                         <i class="fas fa-bus"></i>
-                        <p>Otobus Drivers</p>
+                        <p>Otobüs Drivers</p>
                     </a>
                 </li>
                 <li class="active ">
@@ -67,7 +112,7 @@ $headers = "From: otobus@gmail.com";
                 <li>
                     <a href="feedback.php">
                         <i class="fas fa-exclamation-circle"></i>
-                        <p> Reported Drivers</p>
+                        <p> Reports</p>
                     </a>
                 </li>
                 <li >
@@ -101,6 +146,33 @@ $headers = "From: otobus@gmail.com";
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="navbar-nav">
+                    <!--###############################################################################-->
+                    <div class="dropdown" >
+                        <a class="notification" href='#' id="view-notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-bell fa-lg"></i>
+                            <span class="badge" id="notification-badge"><?php if($Count>0) echo $Count;else echo "";?></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                            <a class="dropdown-item" href="requests.php" style="font-size: 15px">New Drivers: <b style="color: red"><?php echo $ReqCnt;?></b></a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="requests.php" style="font-size: 15px">New insurance requests: <b style="color: red"><?php echo $InsCnt;?></b></a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="feedback.php" style="font-size: 15px">Reported Drivers: <b style="color: red"><?php echo $DrvPep;?></b></a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="feedback.php" style="font-size: 15px">Reported Passengers: <b style="color: red"><?php echo $PssRep;?></b></a>
+                            <div class="dropdown-divider"></div>
+
+                        </div>
+                    </div>
+                    <script>
+                        $('#view-notification').click(function () {
+                            $('#notification-badge').hide();
+                        });
+                    </script>
+
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <!--###############################################################################-->
                     <li class="nav-item">
                         <i class="now-ui-icons users_single-02" "></i>
                         <p>

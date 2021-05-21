@@ -1,6 +1,30 @@
 <?php
 require_once'db.php';
 include("./auth.php");
+$ReqCnt=0;
+$InsCnt=0;
+$DrvPep=0;
+$PssRep=0;
+$Count=0;
+
+$sq1 = "SELECT * from `driver` WHERE active=0b0";
+$re1 = $con->query($sq1);
+$ReqCnt=$re1->num_rows;
+
+$sq2 = "SELECT * from `driver` WHERE onofflag=0b1";
+$re2 = $con->query($sq2);
+$InsCnt=$re2->num_rows;
+
+$sq3 = "SELECT * from `feedback` WHERE report='1'";
+$re3 = $con->query($sq3);
+$DrvPep=$re3->num_rows;
+
+$sq4 = "SELECT * from `passenger` WHERE report='1'";
+$re4 = $con->query($sq4);
+$PssRep=$re4->num_rows;
+
+$Count=$ReqCnt+$InsCnt+$DrvPep+$PssRep;
+
 
 // Code for record deletion
 if(isset($_REQUEST['del'])) {
@@ -16,7 +40,7 @@ if(isset($_REQUEST['del'])) {
     $driveremail = $ro['email'];
 
     $to_email = $driveremail;
-    $subject = "طلب سائق جديد";
+    $subject = "حذف من أوتوباس";
     $body="بناءاً على عدد البلاغات الكبير التي وصلت عنك , تم حذفك من تطبيق أوتوباس , يُرجى تفهم الموقف..";
     $headers = "From: otobus@gmail.com";
     mail($to_email, $subject, $body, $headers)&&$result;
@@ -44,7 +68,7 @@ if(isset($_REQUEST['idd'])){
     $ress = $con->query($qqq);
 
     $to_email = $driveremail;
-    $subject = "طلب سائق جديد";
+    $subject = "وصلك إبلاغ جديد";
     $body=" يُرجى الانتباه أنه تم الإبلاغ عنك للمرة $reportcount 
       واذا وصل عدد البلاغات لأكثر من 20 بلاغ سيتم حذفك من التطبيق ";
     $headers = "From: otobus@gmail.com";
@@ -61,6 +85,45 @@ if(isset($_REQUEST['dont'])){
     $qqq = "UPDATE `feedback` SET report ='0' WHERE id = '$feedbackid'";
     $ress = $con->query($qqq);
 }
+
+if(isset($_REQUEST['pdel'])) {
+    $passsid = intval($_GET['pdel']);
+    $sql = "SELECT * from `passenger` WHERE passid='$passsid'";
+    $ress = $con->query($sql);
+    $row = mysqli_fetch_assoc($ress);
+    $passemail = $row['email'];
+
+    $to_email = $passemail;
+    $subject = "حذف الحساب";
+    $body="بناءاً على عدد البلاغات الكبير التي وصلت عنك , تم حذفك من تطبيق أوتوباس , يُرجى تفهم الموقف..";
+    $headers = "From: otobus@gmail.com";
+    mail($to_email, $subject, $body, $headers);
+
+    $query = "DELETE FROM `passenger` WHERE email = '$passemail'";
+    $result = mysqli_query($con,$query);
+
+}
+
+if(isset($_REQUEST['pidd'])){
+    $passsid = intval($_GET['pidd']);
+    $sql = "SELECT * from `passenger` WHERE passid='$passsid'";
+    $ress = $con->query($sql);
+    $row = mysqli_fetch_assoc($ress);
+    $passemail = $row['email'];
+    $reportcount=$row['repcnt']+ 1;
+
+    $to_email = $passemail;
+    $subject = "ابلاغ جديد";
+    $body=" يُرجى الانتباه أنه تم الإبلاغ عنك للمرة $reportcount 
+      واذا وصل عدد البلاغات لأكثر من 20 بلاغ سيتم حذفك من التطبيق ";
+    $headers = "From: otobus@gmail.com";
+    mail($to_email, $subject, $body, $headers);
+
+    $qqq = "UPDATE `passenger` SET report ='0',repcnt='$reportcount' WHERE passid = '$passsid'";
+    $ress = $con->query($qqq);
+}
+
+
 ?>
 
 <!DOCTYPE html>
@@ -76,7 +139,7 @@ if(isset($_REQUEST['dont'])){
     <link rel="icon" href="../images/icon2.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Otobüs| Reported Drivers
+        Otobüs| Reports
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
@@ -86,6 +149,21 @@ if(isset($_REQUEST['dont'])){
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
     <link href="../assets/demo/demo.css" rel="stylesheet" />
+    <style>
+        .notification {
+            color: white;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            border-radius: 2px;
+        }
+        .notification .badge {
+            position: absolute;
+            border-radius: 50%;
+            background: red;
+            color: white;
+        }
+    </style>
 </head>
 
 <body class="user-profile">
@@ -104,7 +182,12 @@ if(isset($_REQUEST['dont'])){
                         <p>Dashboard</p>
                     </a>
                 </li>
-
+                <li>
+                    <a href="passengers.php">
+                        <i class="glyphicon glyphicon-user"></i>
+                        <p>Otobüs Passengers</p>
+                    </a>
+                </li>
                 <li >
                     <a href="drivers.php">
                         <i class="fas fa-bus"></i>
@@ -121,7 +204,7 @@ if(isset($_REQUEST['dont'])){
                     <a href="feedback.php">
                         <!--  <i class="far fa-star"></i>-->
                         <i class="fas fa-exclamation-circle"></i>
-                        <p> Reported Drivers</p>
+                        <p> Reports</p>
                     </a>
                 </li>
                 <li >
@@ -146,7 +229,7 @@ if(isset($_REQUEST['dont'])){
                         <span class="navbar-toggler-bar bar3"></span>
                     </button>
                 </div>
-                <a class="navbar-brand" href="#pablo">Reported Drivers</a>
+                <a class="navbar-brand" href="#pablo">Reports</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -155,6 +238,33 @@ if(isset($_REQUEST['dont'])){
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="navbar-nav">
+                    <!--###############################################################################-->
+                    <div class="dropdown" >
+                        <a class="notification" href='#' id="view-notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-bell fa-lg"></i>
+                            <span class="badge" id="notification-badge"><?php if($Count>0) echo $Count;else echo "";?></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                            <a class="dropdown-item" href="requests.php" style="font-size: 15px">New Drivers: <b style="color: red"><?php echo $ReqCnt;?></b></a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="requests.php" style="font-size: 15px">New insurance requests: <b style="color: red"><?php echo $InsCnt;?></b></a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="feedback.php" style="font-size: 15px">Reported Drivers: <b style="color: red"><?php echo $DrvPep;?></b></a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="feedback.php" style="font-size: 15px">Reported Passengers: <b style="color: red"><?php echo $PssRep;?></b></a>
+                            <div class="dropdown-divider"></div>
+
+                        </div>
+                    </div>
+                    <script>
+                        $('#view-notification').click(function () {
+                            $('#notification-badge').hide();
+                        });
+                    </script>
+
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <!--###############################################################################-->
                     <li class="nav-item">
                         <i class="now-ui-icons users_single-02" "></i>
                         <p>
@@ -174,11 +284,13 @@ if(isset($_REQUEST['dont'])){
     <!-- End Navbar -->
     <div class="panel-header panel-header-sm" style="background-color:#FFB236">
     </div>
-    <div class="content">
         <div class="content">
             <div class="row">
                 <div class="col-md-12">
                     <div class="card" >
+                        <div class="card-header">
+                            <h4 class="card-title">Reported Drivers</h4>
+                        </div>
                         <div class="card-body" >
                             <div class="table-responsive">
                                 <table class="table">
@@ -257,8 +369,69 @@ if(isset($_REQUEST['dont'])){
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card" >
+                        <div class="card-header">
+                            <h4 class="card-title">Reported Passengers</h4>
+                        </div>
+                        <div class="card-body" >
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <th>#</th>
+                                    <th class="text-center">
+                                        Passenger
+                                    </th>
+                                    <th class="text-center">
+                                        Times
+                                    </th>
+                                    <th class="text-center">Accept</th>
+                                    <th class="text-center">Delete Passenger</th>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    $sql = "SELECT * from `passenger` WHERE report='1'";
+                                    $result = $con->query($sql);
+                                    $cnt=1;
+                                    for($i=0;$i<$result->num_rows;$i++) {
+                                        $row = mysqli_fetch_assoc($result);
+                                        $passname = $row['name'];
+                                        $reportcount=$row['repcnt'];
+                                        $passid= $row['passid'];
+                                        ?>
+                                        <tr>
+                                            <td><?php echo htmlentities($cnt); ?></td>
+                                            <td class="text-center"><b><?php echo htmlentities($passname); ?></b></td>
+                                            <td class="text-center"><?php echo htmlentities($reportcount); ?></td>
+
+                                            <td class="text-center" ><a href="feedback.php?pidd=<?php echo htmlentities($passid); ?>">
+                                                    <button class="btn btn-success btn-xs"><span
+                                                                class="glyphicon glyphicon-ok"></span></button>
+                                                </a>
+                                            </td>
+
+                                            <td class="text-center"><a href="feedback.php?pdel=<?php echo htmlentities($passid); ?>">
+                                                    <button class="btn btn-danger btn-xs"
+                                                            onClick="return confirm('Do you really want to delete passenger');">
+                                                        <span class="glyphicon glyphicon-trash"></span></button>
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <?php
+                                        $cnt++;
+                                    } ?>
+                                    </tbody>
+                                </table>
+                                <div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 </div>
 
     <!--   Core JS Files   -->

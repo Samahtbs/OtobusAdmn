@@ -1,6 +1,8 @@
 <?php
 require_once'db.php';
 include("./auth.php");
+$source="";
+$destination="";
 $ReqCnt=0;
 $InsCnt=0;
 $DrvPep=0;
@@ -25,16 +27,37 @@ $PssRep=$re4->num_rows;
 
 $Count=$ReqCnt+$InsCnt+$DrvPep+$PssRep;
 
-$driveremail=$_SESSION['driveremail'];//'ahmad@gmail.com';
-$drivername=$_SESSION['drivername'];
-$query = "UPDATE `driver` SET onofflag =0b0 WHERE email = '$driveremail'";
-$result = mysqli_query($con,$query);
-//**************************************
-$to_email = $driveremail;
-$subject = "تغيير بطاقة التأمين";
-$body ="$drivername تم قبول تأمينك الجديد , وبإمكانك العودة للعمل مجدداً ";
-$headers = "From: otobus@gmail.com";
+if(isset($_REQUEST['del'])) {
+    $passsid = intval($_GET['del']);
+    $sql = "SELECT * from `passenger` WHERE passid='$passsid'";
+    $ress = $con->query($sql);
+    $ro = mysqli_fetch_assoc($ress);
+    $passemail = $ro['email'];
+
+    $to_email = $passemail;
+    $subject = "حذف الحساب";
+    $body="بناءاً على عدد البلاغات الكبير التي وصلت عنك , تم حذفك من تطبيق أوتوباس , يُرجى تفهم الموقف..";
+    $headers = "From: otobus@gmail.com";
+    mail($to_email, $subject, $body, $headers);
+
+    $que = "DELETE FROM `passenger` WHERE email = '$passemail'";
+    $re = mysqli_query($con,$que);
+
+    echo "<script>window.location.href='passengers.php'</script>";
+}
+
+if(isset($_REQUEST['phone'])) {
+    $phone= intval($_GET['phone']);
+    $sql= "SELECT * from `passenger` WHERE phonenum =$phone";
+}else{
+    $sql= "SELECT * from `passenger` WHERE 1";
+}
+$result = $con->query($sql);
+
+
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +71,7 @@ $headers = "From: otobus@gmail.com";
     <link rel="icon" href="../images/icon2.png">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>
-        Acceptation
+        Otobüs| Passengers
     </title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <!--     Fonts and icons     -->
@@ -58,6 +81,7 @@ $headers = "From: otobus@gmail.com";
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
     <link href="../assets/demo/demo.css" rel="stylesheet" />
+    <link rel="stylesheet” href=”dist/css/style.css" />
     <style>
         .notification {
             color: white;
@@ -84,25 +108,26 @@ $headers = "From: otobus@gmail.com";
                 <h3 style="color: aliceblue;margin-left: 25px;margin-top: 20px;">Otobüs Admin</h3>
             </div>
             <ul class="nav">
+
                 <li>
                     <a href="dashboard.php">
                         <i class="now-ui-icons design_app"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li>
+                <li class="active ">
                     <a href="passengers.php">
                         <i class="glyphicon glyphicon-user"></i>
                         <p>Otobüs Passengers</p>
                     </a>
                 </li>
-                <li>
+                <li >
                     <a href="drivers.php">
                         <i class="fas fa-bus"></i>
                         <p>Otobüs Drivers</p>
                     </a>
                 </li>
-                <li class="active ">
+                <li>
                     <a href="requests.php">
                         <i class="fas fa-clipboard-list"></i>
                         <p>Drivers Requests</p>
@@ -136,7 +161,7 @@ $headers = "From: otobus@gmail.com";
                         <span class="navbar-toggler-bar bar3"></span>
                     </button>
                 </div>
-                <a class="navbar-brand" href="#pablo">Drivers INFORMATION</a>
+                <a class="navbar-brand" href="#pablo">Passengers</a>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-bar navbar-kebab"></span>
@@ -177,7 +202,6 @@ $headers = "From: otobus@gmail.com";
                         <p>
                             &nbsp;<?php echo $_SESSION['adname']; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </p>
-
                     </li>
                     <li>
                         <a href="./logout.php">
@@ -191,34 +215,92 @@ $headers = "From: otobus@gmail.com";
     <!-- End Navbar -->
     <div class="panel-header panel-header-sm" style="background-color:#FFB236">
     </div>
+
     <div class="content">
-        <div class="content">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <br/>
-                        <br/>
-                        <h5 style="color: limegreen ;text-align: center">
-                            <?php
-                            if (mail($to_email, $subject, $body, $headers)&&$result) {
-                                echo " ***** Driver New Insurance Accepted successfuly ***** ";
-                            } else {
-                                echo "Email sending failed...";
-                            }
-                            ?>
-                        </h5>
-                        </br>
-                        <h6 style="text-align: center;text-underline: black">
-                            <a href='requests.php'>See More Drivers</a>
-                        </h6>
-                        </br>
-                        </br>
-                        </br>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="title">Search for passenger</h5>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <input type="number" name="phone" class="form-control" placeholder="Passenger phone" style="width: 265px">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="form-control btn btn-primary submit px-3" style="background-color:#FFB236">Search</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                    <th>#</th>
+                                    <th class="text-center">
+                                        Name
+                                    </th>
+                                    <th class="text-center">
+                                        Email
+                                    </th>
+                                    <th class="text-center">
+                                        Phone
+                                    </th>
+                                    <th class="text-center">
+                                        Peport Times
+                                    </th>
+                                    <th class="text-center">Delete </th>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    $cnt=1;
+                                    for($i=0;$i<$result->num_rows;$i++) {
+                                        $row = mysqli_fetch_assoc($result);
+                                        $passid=$row['passid'];
+                                        ?>
+                                        <tr>
+                                            <td><?php echo htmlentities($cnt); ?></td>
+                                            <td class="text-center"><b><?php echo htmlentities($row['name']); ?></b></td>
+                                            <td class="text-center"><?php echo htmlentities($row['email']); ?></td>
+                                            <td class="text-center" ><?php echo htmlentities($row['phonenum']); ?></td>
+                                            <td class="text-center" style="color: red"><b><?php echo htmlentities($row['repcnt']); ?></b></td>
+
+
+                                            <td class="text-center">
+                                                <a href="passengers.php?del=<?php echo htmlentities($passid); ?>">
+                                                    <button class="btn btn-danger btn-xs"
+                                                            onClick="return confirm('Do you really want to delete passenger');">
+                                                        <span class="glyphicon glyphicon-trash"></span>
+                                                    </button>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                        $cnt++;}
+                                        ?>
+                                    </tbody>
+                                </table>
+                    </div>
+                </div>
+                    <div class="card-footer">
+                        <div class="stats">
+                            <i class="now-ui-icons arrows-1_refresh-69"></i> Just Updated
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
+
+</div>
 </div>
 
 <!--   Core JS Files   -->
@@ -233,7 +315,7 @@ $headers = "From: otobus@gmail.com";
 <!--  Notifications Plugin    -->
 <script src="../assets/js/plugins/bootstrap-notify.js"></script>
 <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
-<script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
+<script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/demo/demo.js"></script>
 </body>
 

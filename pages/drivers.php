@@ -7,6 +7,25 @@ $ReqCnt=0;
 $InsCnt=0;
 $DrvPep=0;
 $PssRep=0;
+$Count=0;
+
+$sq1 = "SELECT * from `driver` WHERE active=0b0";
+$re1 = $con->query($sq1);
+$ReqCnt=$re1->num_rows;
+
+$sq2 = "SELECT * from `driver` WHERE onofflag=0b1";
+$re2 = $con->query($sq2);
+$InsCnt=$re2->num_rows;
+
+$sq3 = "SELECT * from `feedback` WHERE report='1'";
+$re3 = $con->query($sq3);
+$DrvPep=$re3->num_rows;
+
+$sq4 = "SELECT * from `passenger` WHERE report='1'";
+$re4 = $con->query($sq4);
+$PssRep=$re4->num_rows;
+
+$Count=$ReqCnt+$InsCnt+$DrvPep+$PssRep;
 
 if(isset($_REQUEST['dest'])) {
     $placeid = intval($_GET['dest']);
@@ -96,7 +115,12 @@ if(isset($_REQUEST['drvid'])) {
                         <p>Dashboard</p>
                     </a>
                 </li>
-
+                <li>
+                    <a href="passengers.php">
+                        <i class="glyphicon glyphicon-user"></i>
+                        <p>Otobüs Passengers</p>
+                    </a>
+                </li>
                 <li class="active ">
                     <a href="drivers.php">
                         <i class="fas fa-bus"></i>
@@ -112,7 +136,7 @@ if(isset($_REQUEST['drvid'])) {
                 <li>
                     <a href="feedback.php">
                         <i class="fas fa-exclamation-circle"></i>
-                        <p> Reported Drivers</p>
+                        <p> Reports </p>
                     </a>
                 </li>
                 <li >
@@ -150,20 +174,19 @@ if(isset($_REQUEST['drvid'])) {
                     <div class="dropdown" >
                     <a class="notification" href='#' id="view-notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-bell fa-lg"></i>
-                        <span class="badge" id="notification-badge"><?php echo 1;?></span>
+                        <span class="badge" id="notification-badge"><?php if($Count>0) echo $Count;else echo "";?></span>
                     </a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <?php
-                            $sql = "SELECT * from `places` WHERE 1";
-                            $result = $con->query($sql);
-                            for($i=0;$i<$result->num_rows;$i++) {
-                                $row = mysqli_fetch_assoc($result);
-                                ?>
-                                <a class="dropdown-item" href="drivers.php?src=<?php echo $row['id']; ?>" style="font-size: 15px"><?php echo $row['PlaceName'];?></a>
-                                <div class="dropdown-divider"></div>
-                                <?php
-                            }
-                            ?>
+
+                            <a class="dropdown-item" href="requests.php" style="font-size: 15px">New Drivers: <b style="color: red"><?php echo $ReqCnt;?></b></a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="requests.php" style="font-size: 15px">New insurance requests: <b style="color: red"><?php echo $InsCnt;?></b></a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="feedback.php" style="font-size: 15px">Reported Drivers: <b style="color: red"><?php echo $DrvPep;?></b></a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="feedback.php" style="font-size: 15px">Reported Passengers: <b style="color: red"><?php echo $PssRep;?></b></a>
+                            <div class="dropdown-divider"></div>
+
                         </div>
                     </div>
                    <script>
@@ -172,7 +195,7 @@ if(isset($_REQUEST['drvid'])) {
                         });
                     </script>
 
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                     <!--###############################################################################-->
                     <li class="nav-item">
                         <i class="now-ui-icons users_single-02" "></i>
