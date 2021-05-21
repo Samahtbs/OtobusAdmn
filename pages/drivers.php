@@ -3,6 +3,11 @@ require_once'db.php';
 include("./auth.php");
 $source="";
 $destination="";
+$ReqCnt=0;
+$InsCnt=0;
+$DrvPep=0;
+$PssRep=0;
+
 if(isset($_REQUEST['dest'])) {
     $placeid = intval($_GET['dest']);
     $_SESSION['destid']=$placeid;
@@ -57,6 +62,22 @@ if(isset($_REQUEST['drvid'])) {
     <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
     <link href="../assets/demo/demo.css" rel="stylesheet" />
+    <link rel="stylesheet” href=”dist/css/style.css" />
+    <style>
+        .notification {
+            color: white;
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+            border-radius: 2px;
+        }
+        .notification .badge {
+            position: absolute;
+            border-radius: 50%;
+            background: red;
+            color: white;
+        }
+    </style>
 </head>
 
 <body class="user-profile">
@@ -125,12 +146,39 @@ if(isset($_REQUEST['drvid'])) {
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navigation">
                 <ul class="navbar-nav">
+                    <!--###############################################################################-->
+                    <div class="dropdown" >
+                    <a class="notification" href='#' id="view-notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-bell fa-lg"></i>
+                        <span class="badge" id="notification-badge"><?php echo 1;?></span>
+                    </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <?php
+                            $sql = "SELECT * from `places` WHERE 1";
+                            $result = $con->query($sql);
+                            for($i=0;$i<$result->num_rows;$i++) {
+                                $row = mysqli_fetch_assoc($result);
+                                ?>
+                                <a class="dropdown-item" href="drivers.php?src=<?php echo $row['id']; ?>" style="font-size: 15px"><?php echo $row['PlaceName'];?></a>
+                                <div class="dropdown-divider"></div>
+                                <?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+                   <script>
+                        $('#view-notification').click(function () {
+                            $('#notification-badge').hide();
+                        });
+                    </script>
+
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                    <!--###############################################################################-->
                     <li class="nav-item">
                         <i class="now-ui-icons users_single-02" "></i>
                         <p>
                             &nbsp;<?php echo $_SESSION['adname']; ?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </p>
-
                     </li>
                     <li>
                         <a href="./logout.php">
@@ -198,12 +246,12 @@ if(isset($_REQUEST['drvid'])) {
                         </div>
                 </div>
             </div>
+
         <div class="row">
             <div class="card-body all-icons">
                 <div class="card">
                     <div class="card-header">
                         <?php
-
                         $sql1 = "SELECT * from `places` WHERE id='$src'";
                         $res1 = $con->query($sql1);
                         $row1 = mysqli_fetch_assoc($res1);
@@ -218,7 +266,6 @@ if(isset($_REQUEST['drvid'])) {
                         ?>
                         <h4 class="card-title"><b>(&nbsp;&nbsp;<?php echo $source;?> &nbsp; <i class="fas fa-arrows-alt-h"></i> &nbsp; <?php echo $destination ?>&nbsp;&nbsp;) Drivers</b></h4>
                     </div>
-                    <div class="card-body">
                     <?php
                     $cnt=1;
                     $sql = "SELECT * from `driver` WHERE (begname='$source' AND endname='$destination' AND active=0b1) OR (begname='$destination' AND endname='$source' AND active=0b1) ";
@@ -770,6 +817,7 @@ if(isset($_REQUEST['drvid'])) {
                     <?php
                     }
                     ?>
+
                 </div>
                 </div>
             </div>
@@ -879,6 +927,7 @@ if(isset($_REQUEST['drvid'])) {
     var arr = ["UK", "France", "Spain", "Russia", "Italy", "Turkey", "Austrlia", "USA", "Egypt", "Lebanon", "Germany", "Portughal", "Emirate", "Switzerland", "Brazil", "Canada", "Jaban", "Malaysia", "Trabzon"];
     autocomplete(document.getElementById("inp"), arr);
 </script>
+<script src="dist/js/main.js"></script>
 <script src="../assets/js/core/jquery.min.js"></script>
 <script src="../assets/js/core/popper.min.js"></script>
 <script src="../assets/js/core/bootstrap.min.js"></script>
