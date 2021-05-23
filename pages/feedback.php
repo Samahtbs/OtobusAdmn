@@ -110,7 +110,7 @@ if(isset($_REQUEST['pidd'])){
     $ress = $con->query($sql);
     $row = mysqli_fetch_assoc($ress);
     $passemail = $row['email'];
-    $reportcount=$row['repcnt']+ 1;
+    $reportcount=$row['repcnt'];
 
     $to_email = $passemail;
     $subject = "ابلاغ جديد";
@@ -119,7 +119,7 @@ if(isset($_REQUEST['pidd'])){
     $headers = "From: otobus@gmail.com";
     mail($to_email, $subject, $body, $headers);
 
-    $qqq = "UPDATE `passenger` SET report ='0',repcnt='$reportcount' WHERE passid = '$passsid'";
+    $qqq = "UPDATE `passenger` SET report ='0' WHERE passid = '$passsid'";
     $ress = $con->query($qqq);
 }
 
